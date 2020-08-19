@@ -111,6 +111,10 @@ ul.ipir {
        color: #fff;
    }
 
+   .h500 {
+       min-height: 200px;
+   }
+
 
 @media all and (max-width: 767px) {
 
