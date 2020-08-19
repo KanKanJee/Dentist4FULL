@@ -112,7 +112,7 @@ ul.ipir {
    }
 
    .h500 {
-       min-height: 430px;
+       min-height: 200px;
    }
 
 
@@ -189,5 +189,12 @@ ul.ipir {
     @media all and (max-width: 500px) and (min-width: 300px) {
         .whyuspad {
             padding: 0 15px;
+        }
+    }
+
+
+    @media all and (max-width: 332px) {
+        .h2flowfix {
+            font-size: 20px;
         }
     }
