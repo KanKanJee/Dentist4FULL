@@ -113,9 +113,7 @@ ul.ipir {
        color: #fff;
    }
 
-   .h500 {
-       min-height: 200px;
-   }
+   
 
 
 @media all and (max-width: 767px) {
@@ -127,6 +125,8 @@ ul.ipir {
     .mbpadtop {
         padding-top: 150px;
     }
+
+    
     
     }
 
@@ -135,6 +135,12 @@ ul.ipir {
         .height-img-square {
             height: 850px;
             max-height: 900px;
+        }
+
+        .uxmenu li a{
+            font-size: 13px ; 
+            font-weight: 600;
+            color: #1b1b1b;
         }
     }
     
@@ -171,6 +177,9 @@ ul.ipir {
 
             padding: 50px 5% !important;
         }
+        .h500 {
+            min-height: 1119px;
+        }
     }
 
     @media all and (min-width: 370px) and (max-width: 530px) {
@@ -178,6 +187,9 @@ ul.ipir {
         .ben-white-pad {
 
             padding: 20px 5% !important;
+        }
+        .h500 {
+            min-height: 799px;
         }
     }
     
@@ -198,5 +210,8 @@ ul.ipir {
     @media all and (max-width: 332px) {
         .h2flowfix {
             font-size: 20px;
+        }
+        .h500 {
+            min-height: 487px;
         }
     }
