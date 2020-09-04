@@ -109,8 +109,30 @@ ul.ipir {
        
    }
 
+   .rev-back {
+    background-color: #2D6A9F;
+    
+}
+
+   
+
    .epig-text {
        color: #fff;
+   }
+
+   .epig-text ul li h5,h6{
+    color: #fff;
+   }
+
+    .flex-control-nav li a {
+        background: none;
+        border: 2px solid #fff;
+        width: 10px;
+        height: 10px;
+    }
+
+   .close-modal { 
+    color: #fff;
    }
 
    
@@ -137,11 +159,21 @@ ul.ipir {
             max-height: 900px;
         }
 
-        .uxmenu li a{
+        .uxmenu li a:link {
             font-size: 13px ; 
             font-weight: 600;
-            color: #1b1b1b;
+            
         }
+
+
+        .uxmenu li a:hover {
+            font-size: 13px ; 
+            font-weight: 600;
+            color: #39A77F;
+        }
+
+        
+        
     }
     
     br {
@@ -150,6 +182,9 @@ ul.ipir {
         position: static;
      }
 
+     .overflow2yes {
+        overflow: scroll !important; 
+    }
 
      @media all and (max-width: 990px) {
         .overflowyes {
