@@ -115,14 +115,14 @@ ul.ipir {
 }
 
    
-
-   .epig-text {
-       color: #fff;
-   }
-
-   .epig-text ul li h5,h6{
+.epig-text {
     color: #fff;
-   }
+}
+
+.epig-text ul li h5,h6{
+ color: #fff;
+}
+
 
     .flex-control-nav li a {
         background: none;
@@ -131,9 +131,11 @@ ul.ipir {
         height: 10px;
     }
 
+    /*
    .close-modal { 
     color: #fff;
-   }
+   } 
+   */
 
    
 
@@ -184,6 +186,10 @@ ul.ipir {
 
      .overflow2yes {
         overflow: scroll !important; 
+    }
+
+    .word-wrap {
+        word-wrap: break-word;
     }
 
      @media all and (max-width: 990px) {
