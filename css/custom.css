@@ -1,5 +1,7 @@
 /****** PLACE YOUR CUSTOM STYLES HERE ******/
 
+
+
 .vph {
     height: 80vh;
 
@@ -73,10 +75,11 @@ noscript div {
 
 }
 
-p {
-    font-size: 15px;
+p, li {
+    font-size: 17px;
 }
-li {
+
+span {
     font-size: 15px;
 }
 
@@ -137,8 +140,16 @@ ul.ipir {
    } 
    */
 
-   
+   /* 
+   @media all and (min-width: 767px) {
+    
+    .text-cta {
+        font-size: 24px;
+        line-height: 30px;
+    }
+}
 
+*/
 
 @media all and (max-width: 767px) {
 
@@ -190,6 +201,10 @@ ul.ipir {
 
     .word-wrap {
         word-wrap: break-word;
+    }
+
+    div.mb10> * {
+        margin-bottom: 15px;
     }
 
      @media all and (max-width: 990px) {
