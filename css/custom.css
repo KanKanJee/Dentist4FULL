@@ -127,11 +127,19 @@ ul.ipir {
 }
 
 
+.close-modal-white {
+    color: #fff;
+}
+
     .flex-control-nav li a {
         background: none;
         border: 2px solid #fff;
         width: 10px;
         height: 10px;
+    }
+
+    .plr0 {
+        padding: 0 0;
     }
 
     /*
