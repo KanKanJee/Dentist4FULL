@@ -1,6 +1,12 @@
 /****** PLACE YOUR CUSTOM STYLES HERE ******/
 
+li {
+    font-size: 17px !important;
+}
 
+.hero-pos {
+    background-position: 50% 35% !important;
+}
 
 .vph {
     height: 80vh;
