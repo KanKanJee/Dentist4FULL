@@ -3,5 +3,3 @@ RewriteCond %{HTTP_HOST} !^dentistforchildren\.gr [NC,OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://dentistforchildren.gr/$1 [R=301,L]
 
-
-
