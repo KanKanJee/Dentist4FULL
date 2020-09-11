@@ -4,5 +4,5 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://dentistforchildren.gr/$1 [R=301,L]
 
 
-
+RewriteRule ^index\.html$ / [NC,R,L]
 
