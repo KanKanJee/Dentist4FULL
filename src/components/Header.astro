@@ -12,7 +12,7 @@ const navRight = [
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
-<header class="sticky top-0 z-50 border-b border-ink/5 bg-cream/95 backdrop-blur-xl">
+<header class="sticky top-0 z-50 transform-gpu border-b border-ink/5 bg-cream/95 backdrop-blur-xl transition-transform duration-300 ease-out motion-reduce:transition-none will-change-transform" data-site-header>
   <nav class="section-shell flex h-20 items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]" aria-label="Κύρια πλοήγηση">
     <ul class="hidden items-center gap-8 lg:flex">
       {navLeft.map((item) => (
@@ -51,12 +51,46 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 </header>
 
 <script>
+  const header = document.querySelector('[data-site-header]');
   const toggle = document.querySelector('[data-menu-toggle]');
   const menu = document.querySelector('[data-mobile-menu]');
+
+  const revealHeader = () => header?.classList.remove('-translate-y-full');
+
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!open));
     menu?.classList.toggle('hidden', open);
     document.body.classList.toggle('menu-open', !open);
+    if (!open) revealHeader();
   });
+
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  const updateHeader = () => {
+    const currentScrollY = Math.max(window.scrollY, 0);
+    const scrollDelta = currentScrollY - lastScrollY;
+    const menuOpen = toggle?.getAttribute('aria-expanded') === 'true';
+
+    if (menuOpen || currentScrollY <= 80) {
+      revealHeader();
+    } else if (Math.abs(scrollDelta) >= 4) {
+      header?.classList.toggle('-translate-y-full', scrollDelta > 0);
+    }
+
+    if (Math.abs(scrollDelta) >= 4 || currentScrollY <= 80) {
+      lastScrollY = currentScrollY;
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  header?.addEventListener('focusin', revealHeader);
 </script>

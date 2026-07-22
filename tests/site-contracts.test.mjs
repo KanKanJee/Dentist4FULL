@@ -66,6 +66,15 @@ test('the generated pages no longer ship Bootstrap or jQuery', async () => {
   }
 });
 
+test('the navigation hides on downward scroll and returns on upward scroll', async () => {
+  const home = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+
+  assert.match(home, /data-site-header/);
+  assert.match(home, /requestAnimationFrame\(/);
+  assert.match(home, /classList\.toggle\(`-translate-y-full`/);
+  assert.match(home, /passive:!0/);
+});
+
 test('legacy URLs are permanent redirects', async () => {
   const redirects = await readFile(new URL('../dist/_redirects', import.meta.url), 'utf8');
   const rules = redirects
