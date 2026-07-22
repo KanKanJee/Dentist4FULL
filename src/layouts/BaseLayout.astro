@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -53,6 +54,7 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
     <main id="main-content">
       <slot />
     </main>
+    <BackToTop />
     <Footer />
   </body>
 </html>

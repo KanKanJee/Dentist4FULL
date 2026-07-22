@@ -75,6 +75,16 @@ test('the navigation hides on downward scroll and returns on upward scroll', asy
   assert.match(home, /passive:!0/);
 });
 
+test('the narrow mobile hero title fits and a back-to-top control is available', async () => {
+  const home = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+
+  assert.match(home, /text-\[clamp\(1\.9rem,9\.3vw,3rem\)\]/);
+  assert.match(home, /class="block whitespace-nowrap">Παιδοδοντίατρος/);
+  assert.match(home, /data-back-to-top/);
+  assert.match(home, /aria-label="Επιστροφή στην κορυφή"/);
+  assert.match(home, /scrollTo\(/);
+});
+
 test('legacy URLs are permanent redirects', async () => {
   const redirects = await readFile(new URL('../dist/_redirects', import.meta.url), 'utf8');
   const rules = redirects
