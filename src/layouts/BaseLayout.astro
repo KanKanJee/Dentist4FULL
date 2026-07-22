@@ -7,9 +7,10 @@ interface Props {
   title: string;
   description: string;
   canonicalPath?: string;
+  indexable?: boolean;
 }
 
-const { title, description, canonicalPath = '/' } = Astro.props;
+const { title, description, canonicalPath = '/', indexable = true } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site);
 const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg', Astro.site);
 ---
@@ -20,7 +21,7 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={indexable ? 'index, follow' : 'noindex, nofollow'} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

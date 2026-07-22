@@ -1,0 +1,31 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { frontmatter } = Astro.props;
+const { title, description, pubDate, indexable = false } = frontmatter;
+const canonicalPath = Astro.url.pathname;
+---
+
+<BaseLayout
+  title={`${title} | Dentist for Children`}
+  description={description}
+  canonicalPath={canonicalPath}
+  indexable={indexable}
+>
+  <section class="bg-cream py-16 sm:py-24">
+    <div class="section-shell">
+      <div class="mx-auto max-w-4xl rounded-[1.75rem] border border-white/80 bg-white px-6 py-10 shadow-soft sm:px-10 sm:py-14 lg:px-14">
+        <p class="eyebrow">Dentist for Children</p>
+        <h1 class="display-title mt-3">{title}</h1>
+        {pubDate && (
+          <p class="mt-5 text-sm text-ink-soft">
+            Τελευταία ενημέρωση: {new Date(pubDate).toLocaleDateString('el-GR')}
+          </p>
+        )}
+        <article class="legal-content mt-12">
+          <slot />
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

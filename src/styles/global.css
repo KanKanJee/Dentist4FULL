@@ -102,6 +102,42 @@
     content: "";
     @apply absolute top-[0.78rem] left-0 size-2 rounded-full bg-mint;
   }
+
+  .legal-content {
+    @apply text-base leading-8 text-ink-soft;
+  }
+
+  .legal-content h2 {
+    @apply mt-14 mb-5 font-display text-3xl leading-tight font-light tracking-[-0.025em] text-ink;
+  }
+
+  .legal-content h3 {
+    @apply mt-10 mb-4 font-display text-2xl leading-tight font-medium text-ink;
+  }
+
+  .legal-content h4 {
+    @apply mt-8 mb-3 text-lg font-semibold text-ink;
+  }
+
+  .legal-content p {
+    @apply my-5;
+  }
+
+  .legal-content ul {
+    @apply my-5 list-disc space-y-2 pl-7;
+  }
+
+  .legal-content strong {
+    @apply font-semibold text-ink;
+  }
+
+  .legal-content a {
+    @apply font-medium text-mint-deep underline decoration-mint/50 underline-offset-4 transition hover:text-ink;
+  }
+
+  .legal-content hr {
+    @apply my-12 border-ink/10;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

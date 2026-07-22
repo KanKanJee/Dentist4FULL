@@ -78,3 +78,22 @@ test('legacy URLs are permanent redirects', async () => {
     assert.match(rule, /\s301$/);
   }
 });
+
+test('legal policies are local, customized and excluded from indexing', async () => {
+  const home = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+  const privacy = await readFile(new URL('../dist/privacy-policy.html', import.meta.url), 'utf8');
+  const cookies = await readFile(new URL('../dist/cookie-policy.html', import.meta.url), 'utf8');
+
+  assert.match(home, /href="\/privacy-policy"/);
+  assert.match(home, /href="\/cookie-policy"/);
+
+  for (const policy of [privacy, cookies]) {
+    assert.match(policy, /dentistforchildren\.gr/);
+    assert.match(policy, /Theodoros Kouimtzis/);
+    assert.match(policy, /El\. Venizelou 81, Nea Smyrni 17123, Greece/);
+    assert.match(policy, /info@dentistforchildren\.gr/);
+    assert.match(policy, /name="robots" content="noindex, nofollow"/);
+    assert.doesNotMatch(policy, /fullofsmiles\.gr/i);
+    assert.doesNotMatch(policy, /iubenda\.com/i);
+  }
+});
