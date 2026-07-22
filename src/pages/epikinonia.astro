@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+
+const mapUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3146.4563238237265!2d23.71189568006804!3d37.94312981032702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bc4cea3eaecf%3A0x7dba6258695c27a3!2sLeof.+El.+Venizelou+81%2C+Nea+Smirni+171+23!5e0!3m2!1sen!2sgr!4v1557522960781!5m2!1sen!2sgr';
+---
+
+<BaseLayout
+  title="Επικοινωνία - Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη / Αθήνα"
+  description="Επικοινωνήστε μαζί μας. Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη. Εμπειρία χρόνων. Βαθιά διερεύνυση κάθε περιστατικού. Κλείστε ραντεβού τώρα."
+  canonicalPath="/epikinonia"
+>
+  <PageHero title="επικοινωνια" current="επικοινωνια" />
+
+  <section class="bg-white py-16 sm:py-24">
+    <div class="section-shell">
+      <div class="grid overflow-hidden rounded-[2rem] bg-mist shadow-soft lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="relative min-h-[28rem] lg:min-h-[48rem]">
+          <img src="/img/ododiatros-theodoros-kouimtzis-rantevou.jpg" alt="Screenshot" class="absolute inset-0 size-full object-cover" />
+        </div>
+        <div class="flex items-center px-6 py-14 sm:px-12 lg:px-14">
+          <div class="w-full">
+            <h2 class="display-title">Κλείστε Ραντεβού</h2>
+            <p class="eyebrow mt-5">Χαριστε στα παιδια σας το χαμογελο που τουσ αξιζει</p>
+
+            <div class="mt-10 grid gap-4">
+              <a href="tel:2109354588" class="flex items-center justify-between rounded-2xl border border-ink/8 bg-white px-5 py-4 text-lg transition hover:border-mint hover:text-mint-deep"><span>210 9354588</span><span aria-hidden="true">↗</span></a>
+              <a href="tel:6937019896" class="flex items-center justify-between rounded-2xl border border-ink/8 bg-white px-5 py-4 text-lg transition hover:border-mint hover:text-mint-deep"><span>693 701 9896</span><span aria-hidden="true">↗</span></a>
+              <a href="mailto:info@dentistforchildren.gr" class="flex items-center justify-between rounded-2xl border border-ink/8 bg-white px-5 py-4 text-base transition hover:border-mint hover:text-mint-deep sm:text-lg"><span class="break-all">info@dentistforchildren.gr</span><span aria-hidden="true">↗</span></a>
+            </div>
+
+            <p class="body-copy mt-8">Ελ. Βενιζέλου 81, Νέα Σμύρνη 17123</p>
+            <button type="button" data-directions-open class="mt-6 inline-flex items-center gap-3 text-sm font-bold uppercase tracking-[0.12em] text-mint-deep transition hover:text-ink">Οδηγίες Πρόσβασης <span aria-hidden="true">↗</span></button>
+            <a class="button-primary mt-10 w-full sm:w-auto" href="tel:2109354588">καλεστε μας</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="h-[32rem] bg-mist">
+    <iframe src={mapUrl} title="Χάρτης ιατρείου" class="size-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <dialog data-directions-dialog class="m-auto max-h-[90vh] w-[min(94vw,62rem)] rounded-[1.75rem] bg-white p-0 text-ink shadow-2xl backdrop:bg-night/80">
+    <article class="relative max-h-[90vh] overflow-y-auto p-6 sm:p-10">
+      <button type="button" data-directions-close class="sticky top-0 float-right grid size-11 place-items-center rounded-full bg-mist text-xl text-ink shadow-soft" aria-label="Κλείσιμο">×</button>
+      <h2 class="section-title pr-16">Οδηγίες Πρόσβασης στο Ιατρείο</h2>
+      <div class="body-copy mt-8 space-y-7">
+        <p>Το ιατρείο βρίσκεται στη Νέα Σμύρνη, στον 1ο όροφο της γωνιακής πολυκατοικίας στη συμβολή των οδών Ελ.Βενιζέλου 81 και Βιθυνίας 1.<br />Η είσοδος της πολυκατοικίας βρίσκεται επί της οδού Βιθυνίας 1. <br />Μπορείτε να έλθετε στο ιατρείο με όλα τα μέσα: ιδιωτικό αυτοκίνητο, λεωφορεία ΟΑΣΑ, τραμ, μετρό.</p>
+
+        <section>
+          <h3 class="mb-3 text-xl font-medium text-ink">Αν έρχεστε με ιδιωτικό αυτοκίνητο:</h3>
+          <div class="space-y-5">
+            <p><strong class="text-ink">Από Νέο Κόσμο:</strong><br />- Ακολουθείτε την Ηλία Ηλιού με κατεύθυνση τη Νέα Σμύρνη, η οποία καταλήγει στην Ελ. Βενιζέλου. Προσπερνάτε το Άλσος της Νέας Σμύρνης, την Πλατεία (το ιατρείο απέχει περίπου 500 μέτρα από την Πλατεία της Νέας Σμύρνης) και στα τρίτα φανάρια που θα συναντήσετε θα στρίψετε αριστερά για να μπείτε στη Βιθυνίας. Παρκάρετε στους παρακείμενους δρόμους.</p>
+            <p><strong class="text-ink">Από Παλαιό Φάληρο:</strong><br />- Από Λεωφόρο Αμφιθέας μπαίνετε στην Αχιλλέως (δρόμος με τις γραμμές του τραμ στο κέντρο του) η οποία καταλήγει στην Ελ. Βενιζέλου. Συνεχίζετε την Ελ. Βενιζέλου με κατεύθυνση την Αθήνα, θα προσπεράσετε στο δεξί σας χέρι την εκκλησία Αγία Παρασκευή και μετά από δύο φανάρια θα στρίψετε δεξιά και βρίσκεστε στη Βιθυνίας. Παρκάρετε στους παρακείμενους δρόμους.</p>
+            <p><strong class="text-ink">Από Συγγρού:</strong><br />- Μπαίνετε από την κεντρική είσοδο της Νέας Σμύρνης και ανεβαίνετε την Κωνσταντίνου Παλαιολόγου, προσπερνάτε την πλατεία Χρυσοστόμου Σμύρνης, την Εστία Νέας Σμύρνης, τον Κινηματογράφο Σπόρτινγκ, την Ομήρου και συνεχίζετε στην Κωνσταντίνου Παλαιολόγου. Μετά την Ομήρου στο δεύτερο δρόμο που θα συναντήσετε, στρίβετε αριστερά (οδός Μεγάλου Αλεξάνδρου). Στο φανάρι που θα συναντήσετε στρίβετε δεξιά και μπαίνετε στην Ελ. Βενιζέλου. Στο πρώτο φανάρι που θα συναντήσετε στρίβετε αριστερά και μπαίνετε στη Βιθυνίας. Παρκάρετε στους παρακείμενους δρόμους.</p>
+            <p><strong class="text-ink">Από Καλλιθέα:</strong><br />- Από Συνταγματάρχου Δαβάκη με κατεύθυνση τη Νέα Σμύρνη περνάτε υπόγεια, κάθετα τη Συγγρού και μπαίνετε στην Κωνσταντίνου Παλαιολόγου. Προσπερνάτε την πλατεία Χρυσοστόμου Σμύρνης, την Εστία Νέας Σμύρνης, τον Κινηματογράφο Σπόρτινγκ, την Ομήρου και συνεχίζετε στην Κωνσταντίνου Παλαιολόγου. Μετά την Ομήρου στο δεύτερο δρόμο που θα συναντήσετε, στρίβετε αριστερά (οδός Μεγάλου Αλεξάνδρου). Στο φανάρι που θα συναντήσετε στρίβετε δεξιά και μπαίνετε στην Ελ. Βενιζέλου. Στο πρώτο φανάρι που θα συναντήσετε στρίβετε αριστερά και μπαίνετε στη Βιθυνίας. Παρκάρετε στους παρακείμενους δρόμους.</p>
+            <p><strong class="text-ink">Από Πειραιά:</strong><br />- Βγαίνετε από το λιμάνι και τον Πειραιά και συναντάτε την παραλιακή Λεωφόρο (Λεωφόρος Ποσειδώνος). Περνάτε το στάδιο Ειρήνης και Φιλίας και συνεχίζετε ευθεία παραλιακά. Στο ύψος του Φαληρικού δέλτα θα στρίψετε αριστερά για να μπείτε στη Συγγρού, με κατεύθυνση την Αθήνα. Ανηφορίζετε τη Λεωφόρο Συγγρού και στρίβετε δεξιά (γωνιακή πολυκατοικία με γραφεία των Ασφαλειών ΜΙΝΕΤΤΑ) για να μπείτε στην κεντρική είσοδο της Νέας Σμύρνης. Εν συνεχεία ακολουθείτε τις οδηγίες που αναφέρονται στην ενότητα “…Από Συγγρού…”.</p>
+            <p><strong class="text-ink">Από Εθνική οδό:</strong><br />- Κατηφορίζετε τη Λεωφόρο Κηφισού προς Πειραιά και στο τέλος του δρόμου στρίβετε αριστερά και μπαίνετε στη Λεωφόρο Ποσειδώνος με κατεύθυνση τη Γλυφάδα. Συνεχίζετε ευθεία, παραλιακά και στο ύψος του Φαληρικού δέλτα θα στρίψετε αριστερά για να μπείτε στη Συγγρού, με κατεύθυνση την Αθήνα. Ανηφορίζετε τη Συγγρού και στρίβετε δεξιά (γωνιακή πολυκατοικία με γραφεία των Ασφαλειών ΜΙΝΕΤΤΑ) για να μπείτε στην κεντρική είσοδο της Νέας Σμύρνης . Εν συνεχεία ακολουθείτε τις οδηγίες που αναφέρονται στην ενότητα “…Από Συγγρού…”.</p>
+          </div>
+        </section>
+
+        <section>
+          <h3 class="mb-3 text-xl font-medium text-ink">Αν έρχεστε με λεωφορεία ΟΑΣΑ:</h3>
+          <p>Οι γραμμές που μπορούν να σας εξυπηρετήσουν είναι οι:<br />- 219 Στ.Καλλιθέας- Αγ.Δημήτριος (στάση: Περιμένη).<br />- 816 Ταύρος- Αγ.Δημήτριος (στάση: Περιμένη).</p>
+          <p class="mt-3">Το ιατρείο βρίσκεται 50 μέτρα από τη στάση Περιμένη, στη συμβολή των οδών Ελ. Βενιζέλου 81 και Βιθυνίας 1.</p>
+        </section>
+
+        <section>
+          <h3 class="mb-3 text-xl font-medium text-ink">Αν έρχεστε με τραμ:</h3>
+          <p>Οι γραμμές που μπορούν να σας εξυπηρετήσουν είναι οι:<br />- Τ4, «ΑΡΙΣΤΟΤΕΛΗΣ» Σύνταγμα-Ν. Φάληρο (Σ.Ε.Φ)<br />- Τ5, «ΠΛΑΤΩΝΑΣ» Σύνταγμα-Βούλα (Ασκληπιείο)</p>
+          <p class="mt-3">Κατεβαίνετε στη στάση του τραμ Μεγ. Αλεξάνδρου και στα 50 μέτρα θα συναντήσετε το ιατρείο, στη συμβολή των οδών Ελ. Βενιζέλου 81 και Βιθυνίας 1.</p>
+        </section>
+
+        <section>
+          <h3 class="mb-3 text-xl font-medium text-ink">Αν έρχεστε με το μετρό:</h3>
+          <p>Η γραμμή που θα σας εξυπηρετήσει είναι η:<br />- Μ2 (κόκκινη ) Ανθούπολη-Ελληνικό</p>
+          <p class="mt-3">Κατεβαίνετε στη στάση του μετρό Ν. Κόσμου όπου υπάρχει ανταπόκριση με το τραμ. Παίρνετε το τραμ με κατεύθυνση το Ν. Φάληρο ή τη Βούλα και κατεβαίνετε στην 4η στάση που είναι η στάση Μεγ. Αλεξάνδρου. Στα 50 μέτρα θα συναντήσετε το ιατρείο, στη συμβολή των οδών Ελ. Βενιζέλου 81 και Βιθυνίας 1.</p>
+        </section>
+
+        <section>
+          <h3 class="mb-3 text-xl font-medium text-ink">Σημείωση:</h3>
+          <p>Για λεπτομερή απεικόνιση διαδρομών, χαρτών ή τρόπων μετεπιβίβασης στα μέσα μεταφοράς επισκεφτείτε το site: www.stasy.gr</p>
+          <p class="mt-3">www.stasy.gr --&gt;μετακινηθείτε--&gt;πίνακες δρομολογίων--&gt;σχεδιασμός διαδρομής με όλα τα μέσα--&gt;συμπληρώνετε τα πεδία από Α σημείο (σημείο που βρίσκεστε) προς Β σημείο (Ελ. Βενιζέλου 81, Νέα Σμύρνη) και βλέπετε τη διαδρομή που πρέπει να ακολουθήσετε, σε χάρτη της google.</p>
+        </section>
+      </div>
+    </article>
+  </dialog>
+
+  <script>
+    const directionsDialog = document.querySelector('[data-directions-dialog]');
+    document.querySelector('[data-directions-open]')?.addEventListener('click', () => {
+      if (directionsDialog instanceof HTMLDialogElement) directionsDialog.showModal();
+    });
+    document.querySelector('[data-directions-close]')?.addEventListener('click', () => {
+      if (directionsDialog instanceof HTMLDialogElement) directionsDialog.close();
+    });
+    directionsDialog?.addEventListener('click', (event) => {
+      if (event.target === directionsDialog && directionsDialog instanceof HTMLDialogElement) directionsDialog.close();
+    });
+  </script>
+</BaseLayout>

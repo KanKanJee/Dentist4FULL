@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTA from '../components/CTA.astro';
+
+const groups = [
+  {
+    title: 'Προληψη',
+    items: [
+      'Εξατομίκευση των προληπτικών μέτρων ανάλογα τις ανάγκες του κάθε παιδιού.',
+      'Προληπτικές καλύψεις οπών και σχισμών (Sealants)',
+      'Φθορίωση',
+      'Οδηγίες στοματικής υγιεινής',
+      'Οδηγίες ισορροπημένης διατροφής',
+      'Καθαρισμός δοντιών',
+      'Πρόληψη ορθοδοντικών προβλημάτων',
+      'Αθλητικοί νάρθηκες, για πρόληψη τραυματισμών στα δόντια και το πρόσωπο',
+    ],
+  },
+  {
+    title: 'Θεραπεία',
+    items: [
+      'Αισθητικές αποκαταστάσεις προσθίων δοντιών',
+      'Σφραγίσματα',
+      'Απονευρώσεις',
+      'Θεραπεία ουλίτιδας',
+      'Στεφάνες',
+      'Εξαγωγές',
+      'Μηχανήματα διατήρησης χώρου',
+      'Πρώιμη ορθοδοντική θεραπεία',
+      'Λεύκανση Δοντιών',
+    ],
+  },
+  {
+    title: 'Επείγοντα',
+    items: [
+      'Τραύμα Δοντιού',
+      'Tραύμα μαλακών ιστών',
+      'Πονόδοντος',
+      'Πρήξιμο',
+      'Άφθες',
+      'Έρπητική ουλοστοματίτιδα',
+    ],
+  },
+  {
+    title: 'Aθλητικη Οδοντιατρική',
+    items: [
+      'Αθλητικοί νάρθηκες',
+      'Προαγωνιστικός έλεγχος',
+      'Άμεση αντιμετώπιση του επείγοντος τραυματισμού',
+      'Εξειδικευμένο προληπτικό πρόγραμμα για αθλητές',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Υπηρεσίες - Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη / Αθήνα"
+  description="Οι υπηρεσίες μας περιλαμβάνουν όλο το φάσμα της οδοντιατρικής για παιδιά. Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη. Εμπειρία χρόνων. Βαθιά διερεύνυση κάθε περιστατικού. Κλείστε ραντεβού τώρα."
+  canonicalPath="/ipiresies"
+>
+  <PageHero title="υπηρεσιες" current="υπηρεσιες" />
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="section-shell">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="section-title">Η θεραπευτική μας προσέγγιση, όταν χρειάζεται, είναι αυτή της ελάχιστης παρέμβασης.</h2>
+        <div class="body-copy mx-auto mt-8 max-w-3xl space-y-5">
+          <p>Οι υπηρεσίες που προσφέρονται στο ιατρείο μας περιλαμβάνουν όλο το φάσμα της οδοντιατρικής για παιδιά: προληπτική, επανορθωτική, αισθητική, χειρουργική και ορθοδοντική.</p>
+          <p>Δίνουμε έμφαση στην πρόληψη και την προαγωγή της στοματικής υγείας του παιδιού σας μέχρι την ενηλικίωση (18 ετών), ώστε να προλάβουμε οδοντοστοματικές παθήσεις και να αποφύγουμε πολύπλοκες θεραπείες.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-mist py-20 sm:py-28">
+    <div class="section-shell grid items-start gap-5 md:grid-cols-2">
+      {groups.map((group, index) => (
+        <article class:list={['card-surface overflow-hidden p-7 sm:p-9', index === 0 && 'md:row-span-2']}>
+          <div class="flex items-center justify-between gap-5 border-b border-ink/10 pb-6">
+            <h2 class="text-2xl font-light uppercase tracking-[0.04em]">{group.title}</h2>
+            <span class="grid size-11 place-items-center rounded-full bg-mist font-semibold text-mint-deep">0{index + 1}</span>
+          </div>
+          <ul class="rich-list mt-7">
+            {group.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

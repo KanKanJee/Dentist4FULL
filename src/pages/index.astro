@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import SplitFeature from '../components/SplitFeature.astro';
+
+const features = [
+  {
+    title: 'εμπειρια και γνωση 30 χρονων',
+    text: 'Ξέρουμε τι λειτουργεί. Η πολύχρονη εμπειρία μας, μας επιτρέπει να σας προσφέρουμε ποιοτικές υπηρεσίες. Χωρίς πειραματισμούς.',
+    icon: '30',
+  },
+  {
+    title: 'Ποιοτικό και διαρκές αποτέλεσμα',
+    text: 'Οδοντιατρική με εξειδικευμένο προσωπικό και εξοπλισμό υψηλής τεχνολογίας και προδιαγραφών. Εγγυόμαστε το καλύτερο δυνατό αποτέλεσμα.',
+    icon: '✓',
+  },
+  {
+    title: 'Διάθεση επαρκούς χρόνου',
+    text: "Κάθε παιδί είναι ξεχωριστό. Προσαρμοζόμαστε στις ανάγκες του. 'Οχι το αντίθετο. Αφιερώνουμε υπομονετικά όσο χρόνο χρειάζεται το καθένα. Έτσι απολαμβάνετε την καλύτερη εμπειρία.",
+    icon: '◷',
+  },
+  {
+    title: 'Σύγχρονα υλικά τελευταίας τεχνολογίας',
+    text: 'Δεν διαπραγματευόμαστε την ποιότητα. Χρησιμοποιούμε τα πιο σύγχρονα και επιστημονικά τεκμηριωμένα υλικά και τεχνικές. Έτσι απολαμβάνετε ανώδυνη και αποτελεσματική θεραπεία σε βάθος χρόνου.',
+    icon: '✦',
+  },
+  {
+    title: 'Ανώδυνη οδοντιατρική',
+    text: 'Ο χρυσός κανόνας για να μην πονάει κανείς στον οδοντίατρο είναι η αποτελεσματική αναισθησία. Μαζί με το εκπαιδευμένο προσωπικό μας, κάνουμε πολύ προσεκτικά την τοπική αναισθησία εφαρμόζοντας τεχνικές που βοηθούν το παιδί να συνεργαστεί και να αποβάλει τον φόβο του.',
+    icon: '♡',
+  },
+  {
+    title: 'ΣΥΝΕΧΗΣ ΕΝΗΜΕΡΩΣΗ',
+    text: 'Η μάθηση δεν σταματά ποτέ. Ενημερωνόμαστε διαρκώς για νέες τεχνικές και υλικά. Έτσι σας προσφέρουμε ποιοτικές υπηρεσίες.',
+    icon: '↗',
+  },
+];
+
+const cards = [
+  { href: '/paidododiatros', image: '/img/masonry/ododiatros-theodoros-kouimtzis-bio.JPG', title: 'Παιδοδοντίατρος' },
+  { href: '/iatrio', image: '/img/masonry/iatrio-theodoros-kouimtzis.JPG', title: 'Ιατρείο' },
+  { href: '/ipiresies', image: '/img/masonry/ododiatros-theodoros-kouimtzis-ipiresies.jpg', title: 'Υπηρεσίες' },
+];
+---
+
+<BaseLayout
+  title="Παιδοδοντίατρος Θεόδωρος Κουιμτζής Νέα Σμύρνη / Αθήνα"
+  description="Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη. Εμπειρία χρόνων. Βαθιά διερεύνυση κάθε περιστατικού. Κλείστε ραντεβού τώρα."
+>
+  <section class="relative flex min-h-[calc(100svh-5rem)] items-end overflow-hidden bg-ink sm:items-center">
+    <img src="/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg" alt="" class="absolute inset-0 size-full object-cover object-[60%_center]" fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-r from-night/85 via-night/48 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-night/65 via-transparent to-transparent"></div>
+    <div class="section-shell relative py-20 sm:py-28 lg:py-32">
+      <div class="max-w-3xl text-white">
+        <h1 class="font-display text-5xl leading-[0.98] font-light tracking-[-0.04em] sm:text-6xl lg:text-7xl">Παιδοδοντίατρος<br />Θεόδωρος Κουιμτζής</h1>
+        <p class="mt-7 max-w-md text-sm leading-7 font-bold uppercase tracking-[0.18em] text-white/85">Ποιοτικες υπηρεσιες.<br />Αποτελέσματα που διαρκούν.</p>
+        <a class="button-light mt-9" href="/epikinonia">Κλειστε ραντεβου</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="section-shell">
+      <blockquote class="mx-auto max-w-4xl text-center">
+        <p class="font-display text-2xl leading-relaxed font-light tracking-[-0.015em] text-ink sm:text-3xl">"Η μεγαλύτερη χαρά μας είναι όταν βλέπουμε ένα παιδί να φεύγει από το ιατρείο χαρούμενο, ενημερωμένο για τη στοματική του υγεία, απαλλαγμένο από φοβίες και οδοντιατρικά προβλήματα και έκδηλη την ικανοποίηση ότι τα κατάφερε"</p>
+        <footer class="mt-7 text-sm font-semibold text-mint-deep">- Παιδοδοντίατρος Θεόδωρος Κουιμτζής</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="bg-white pb-24">
+    <div class="section-shell grid gap-5 md:grid-cols-3">
+      {cards.map((card) => (
+        <a href={card.href} class="group relative min-h-[26rem] overflow-hidden rounded-[1.75rem] bg-ink shadow-soft">
+          <img src={card.image} alt="Pic" class="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-night/80 via-night/5 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 flex items-center justify-between p-7 text-white">
+            <h2 class="text-xl font-medium uppercase tracking-[0.06em]">{card.title}</h2>
+            <span class="grid size-11 place-items-center rounded-full border border-white/35 bg-white/10 backdrop-blur">↗</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <CTA />
+
+  <SplitFeature image="/img/theodoros-kouimtzis-exetasi-dodia.jpg" title="Υψηλής ποιότητας οδοντιατρικές υπηρεσίες που διαρκούν.">
+    <p>Θέλετε να προσφέρετε στα παιδιά σας το καλύτερο. Το ίδιο και εμείς. Χάρη στα 30 χρόνια γνώσης και εμπειρίας μας, σας παρέχουμε το καλύτερο δυνατό αποτέλεσμα που διαρκεί.</p>
+  </SplitFeature>
+  <SplitFeature image="/img/voithos-iatriou-theodorou-kouimtzi.jpg" title="Λιγότερο κόστος μακροπρόθεσμα." reverse>
+    <p>H επιμονή μας για την πρόληψη, βοηθάει το παιδί σας να αποφεύγει μακροπρόθεσμα, χρονοβόρες και κοστοβόρες θεραπείες.<br />Το αποτέλεσμα είναι ένα υγιές χαμόγελο που διαρκεί, χωρίς ταλαιπωρία.</p>
+  </SplitFeature>
+  <SplitFeature image="/img/ododiatros-theodoros-kouimtzis-panoramiki.jpg" title="Συνολική αντιμετώπιση του παιδιού.">
+    <p>Αντιμετωπίζουμε συνολικά το παιδί σας από την εμφάνιση του πρώτου του παιδικού δοντιού μέχρι την ενηλικίωσή του. Μείνετε σίγουροι πως το παιδί σας θα μπορεί χαμογελάει με αυτοπεποίθηση.</p>
+  </SplitFeature>
+
+  <section class="bg-mist py-20 sm:py-28">
+    <div class="section-shell">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="section-title uppercase">Γιατι να μας επιλεξετε</h2>
+        <p class="body-copy mt-5">Θέλετε να προσφέρετε στα παιδιά σας το καλύτερο.<br />Το ίδιο και εμείς.</p>
+      </div>
+      <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {features.map((feature) => (
+          <article class="card-surface p-7 sm:p-8">
+            <div class="grid size-12 place-items-center rounded-2xl bg-mist text-lg font-semibold text-mint-deep">{feature.icon}</div>
+            <h3 class="mt-7 text-lg leading-snug font-medium uppercase tracking-[0.035em]">{feature.title}</h3>
+            <p class="mt-4 leading-7 text-ink-soft">{feature.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTA from '../components/CTA.astro';
+
+const gallery = [
+  { thumb: '/img/0076.jpg', full: '/img/0076-opt.JPG' },
+  { thumb: '/img/0066.jpg', full: '/img/0066-opt.JPG' },
+  { thumb: '/img/0064.jpg', full: '/img/0064-opt.JPG' },
+  { thumb: '/img/0075.jpg', full: '/img/0075-opt.JPG' },
+  { thumb: '/img/0087.jpg', full: '/img/0087-opt.JPG' },
+  { thumb: '/img/0091.jpg', full: '/img/0091-opt.JPG' },
+  { thumb: '/img/0073.jpg', full: '/img/0073-opt.JPG' },
+  { thumb: '/img/0074.jpg', full: '/img/0074-opt.JPG' },
+];
+---
+
+<BaseLayout
+  title="Ιατρείο - Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη / Αθήνα"
+  description="Ειδικά διαμορφωμένος χώρος για παιδιά. Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη. Εμπειρία χρόνων. Βαθιά διερεύνυση κάθε περιστατικού. Κλείστε ραντεβού τώρα."
+  canonicalPath="/iatrio"
+>
+  <PageHero title="ιατρειο" current="ιατρειο" />
+
+  <section class="bg-white py-20 sm:py-28">
+    <div class="section-shell">
+      <div class="grid items-start gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+        <div class="lg:sticky lg:top-28">
+          <h2 class="section-title">Ο ειδικά διαμορφωμένος μας χώρος βοηθάει τα παιδιά<br />να χαλαρώσουν και εσάς να νιώσετε άνετα.</h2>
+          <div class="body-copy mt-8 space-y-5">
+            <p>Εφαρμόζονται τα πιο πρόσφατα και επικαιροποιημένα μέτρα πρόληψης για τον COVID-19 και ακολουθούμε πρωτόκολλα αποστείρωσης-απολύμανσης με στόχο την ασφαλή προσφορά των οδοντιατρικών υπηρεσιών.</p>
+            <p>Στην αίθουσα αναμονής υπάρχει ξεχωριστός, άνετος και κατάλληλα διαμορφωμένος χώρος, ώστε το παιδί να αποβάλει το ενδεχόμενο άγχος του.</p>
+            <p>Η παρουσία βοηθού προσφέρει υπηρεσίες τεσσάρων χειρών και κάνει την οδοντιατρική εργασία πιο γρήγορη και αποτελεσματική.</p>
+            <p>Οι δύο οδοντιατρικές αίθουσες (το γαλάζιο και το κίτρινο ιατρείο) είναι εξοπλισμένες με οδοντιατρικές μονάδες υψηλών προδιαγραφών.</p>
+          </div>
+        </div>
+
+        <div class="grid auto-rows-[13rem] grid-cols-2 gap-4 sm:auto-rows-[17rem]">
+          {gallery.map((image, index) => (
+            <button type="button" class:list={['group relative overflow-hidden rounded-[1.5rem] bg-mist', index === 0 && 'col-span-2 row-span-2']} data-gallery-src={image.full} aria-label={`Προβολή φωτογραφίας ${index + 1}`}>
+              <img src={image.thumb} alt="" class="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105" loading={index < 2 ? 'eager' : 'lazy'} />
+              <span class="absolute right-4 bottom-4 grid size-10 place-items-center rounded-full bg-white/90 text-ink opacity-0 shadow-soft transition group-hover:opacity-100" aria-hidden="true">↗</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dialog data-gallery-dialog class="m-auto max-h-[92vh] w-[min(92vw,72rem)] rounded-[1.5rem] bg-transparent p-0 backdrop:bg-night/85">
+    <div class="relative overflow-hidden rounded-[1.5rem] bg-night p-2 shadow-2xl">
+      <button type="button" data-gallery-close class="absolute top-5 right-5 z-10 grid size-11 place-items-center rounded-full bg-white text-xl text-ink shadow-soft" aria-label="Κλείσιμο">×</button>
+      <img data-gallery-image src="" alt="" class="max-h-[88vh] w-full rounded-[1.1rem] object-contain" />
+    </div>
+  </dialog>
+
+  <CTA />
+
+  <script>
+    const dialog = document.querySelector('[data-gallery-dialog]');
+    const dialogImage = document.querySelector('[data-gallery-image]');
+    document.querySelectorAll('[data-gallery-src]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!(dialog instanceof HTMLDialogElement) || !(dialogImage instanceof HTMLImageElement)) return;
+        dialogImage.src = button.getAttribute('data-gallery-src') || '';
+        dialog.showModal();
+      });
+    });
+    document.querySelector('[data-gallery-close]')?.addEventListener('click', () => {
+      if (dialog instanceof HTMLDialogElement) dialog.close();
+    });
+    dialog?.addEventListener('click', (event) => {
+      if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+    });
+  </script>
+</BaseLayout>

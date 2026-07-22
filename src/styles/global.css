@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #19363b;
+  --color-ink-soft: #4f666a;
+  --color-mint: #65c9aa;
+  --color-mint-deep: #2f9d7b;
+  --color-mist: #eef7f4;
+  --color-cream: #fbfaf6;
+  --color-ocean: #315f69;
+  --color-night: #17383f;
+  --font-sans: "Manrope", "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Roboto", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --shadow-soft: 0 24px 70px -34px rgb(25 54 59 / 0.28);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 bg-cream font-sans text-ink antialiased;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display text-balance;
+  }
+
+  p,
+  li {
+    @apply text-pretty;
+  }
+
+  a,
+  button,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-mint-deep;
+  }
+
+  ::selection {
+    @apply bg-mint text-night;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.22em] text-mint-deep;
+  }
+
+  .display-title {
+    @apply font-display text-4xl leading-[1.04] font-light tracking-[-0.035em] sm:text-5xl lg:text-6xl;
+  }
+
+  .section-title {
+    @apply font-display text-3xl leading-tight font-light tracking-[-0.025em] sm:text-4xl;
+  }
+
+  .body-copy {
+    @apply text-base leading-8 text-ink-soft sm:text-[1.0625rem];
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-ink px-7 py-3 text-sm font-bold uppercase tracking-[0.11em] text-white shadow-soft transition duration-300 hover:-translate-y-0.5 hover:bg-mint-deep;
+  }
+
+  .button-light {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-bold uppercase tracking-[0.11em] text-ink shadow-soft transition duration-300 hover:-translate-y-0.5 hover:bg-mist;
+  }
+
+  .card-surface {
+    @apply rounded-[1.75rem] border border-white/80 bg-white shadow-soft;
+  }
+
+  .rich-list {
+    @apply space-y-4;
+  }
+
+  .rich-list > li {
+    @apply relative pl-7 leading-8 text-ink-soft;
+  }
+
+  .rich-list > li::before {
+    content: "";
+    @apply absolute top-[0.78rem] left-0 size-2 rounded-full bg-mint;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

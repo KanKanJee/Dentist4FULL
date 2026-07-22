@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  current: string;
+}
+const { title, current } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-mist py-20 sm:py-24">
+  <div class="absolute -top-24 right-[8%] size-72 rounded-full bg-mint/15 blur-3xl" aria-hidden="true"></div>
+  <div class="section-shell relative">
+    <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.15em] text-ink-soft">
+      <a href="/" class="transition hover:text-mint-deep">Αρχικη</a><span aria-hidden="true">/</span><span class="text-mint-deep">{current}</span>
+    </nav>
+    <h1 class="display-title uppercase">{title}</h1>
+  </div>
+</section>

@@ -1,13 +1,12 @@
 HTML/
 READY/
 node_modules/
+.astro/
+dist/
 variant/
 video/
 mail/
 .DS_Store
-package.json
-package-lock.json
-
 css/import/
 css/less/
 ytplayer.css
@@ -55,7 +54,6 @@ Pe-icon-7-stroke.eot
 Pe-icon-7-stroke.svg
 Pe-icon-7-stroke.ttf
 Pe-icon-7-stroke.woff
-
 
 
 

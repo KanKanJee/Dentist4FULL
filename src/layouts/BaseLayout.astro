@@ -1,0 +1,57 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+}
+
+const { title, description, canonicalPath = '/' } = Astro.props;
+const canonical = new URL(canonicalPath, Astro.site);
+const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg', Astro.site);
+---
+
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/img/favicon.ico" sizes="48x48" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap&subset=greek" rel="stylesheet" />
+    <meta property="og:locale" content="el_GR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Παιδοδοντίατρος Θεόδωρος Κουιμτζής Νέα Σμύρνη / Αθήνα" />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Παιδοδοντίατρος Θεόδωρος Κουιμτζής Νέα Σμύρνη / Αθήνα" />
+    <meta property="og:image" content={socialImage} />
+    <script is:inline>
+      if (location.hostname === 'dentistforchildren.gr' || location.hostname === 'www.dentistforchildren.gr') {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-N8VQXBC');
+      }
+    </script>
+  </head>
+  <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8VQXBC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-5 focus:py-3">Μετάβαση στο περιεχόμενο</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

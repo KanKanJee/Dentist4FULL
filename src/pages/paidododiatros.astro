@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTA from '../components/CTA.astro';
+import SplitFeature from '../components/SplitFeature.astro';
+
+const reviews = [
+  {
+    quote: '"Εξαιρετικός,οτι και να πω είναι λίγο.  Πίστευα πως δεν υπήρχε καμία ελπίδα θεραπείας στα δόντια του 6χρονου παιδιού μου, καθότι είχε πάθει φοβία απο άλλους οδοντιάτρους. Με σωστή προσέγγιση και υπομονή κατάφερε και συνεργάστηκε το παιδί άριστα. Η βοηθός επίσης υπέροχη. Λυπάμαι που δεν τον είχαμε βρει νωρίτερα, προτείνω ανεπιφύλακτα."',
+    name: 'Ntina Kkn',
+  },
+  {
+    quote: '"Ο κύριος Κουιμτζής ήταν και δικός μου οδοντίατρος στην παιδική μου ηλικία! Κατά συνέπεια, ήταν η πρώτη επιλογή και για τον Πάνο. Αξιόλογος άνθρωπος, με πολυετή εμπειρία (παρά το νεαρό της ηλικίας του), με γνώσεις και τεχνικές, λύσεις και πρόληψη στο κάθε προβληματισμό. Αγαπητός στα παιδιά με όμορφο τρόπο προσέγγισης και δωράκια επιβράβευσης. Μια επίσκεψη θα σας επιβεβαιώσει τα όσα γράφω.. προτείνω ανεπιφύλακτα!!"',
+    name: 'valentina anastasopoulou',
+  },
+  {
+    quote: '"Εξαιρετικός επιστήμονας, με μεγάλη κατάρτιση και σωστή καθοδήγηση για τα βήματα της θεραπείας τόσο για την μικρή μας όσο και για εμάς τους γονείς. Πάρα πολύ σωστή προσέγγιση απέναντι στο παιδί και τόνωση της αυτοπεποίθησης του. Μόνο τα καλύτερα για έναν εξαίρετο επιστήμονα και άνθρωπο. Ημερομηνία Θεραπείας από 04/2019 ως 05/2019."',
+    name: 'paul pissanos',
+  },
+];
+---
+
+<BaseLayout
+  title="Ο Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη / Αθήνα"
+  description="Ο παιδοδοντίατρος Θεόδωρος Κουιμτζής στην Νέα Σμύρνη. Εμπειρία χρόνων. Βαθιά διερεύνυση κάθε περιστατικού. Κλείστε ραντεβού τώρα."
+  canonicalPath="/paidododiatros"
+>
+  <PageHero title="οδοντιατρος" current="οδοντιατρος" />
+
+  <section class="bg-white">
+    <div class="grid lg:grid-cols-2">
+      <div class="relative min-h-[34rem] lg:min-h-[58rem]">
+        <img src="/img/ododiatros-theodoros-kouimtzis-portrait-bio.jpg" alt="Θεόδωρος Κουιμτζής" class="absolute inset-0 size-full object-cover object-center" />
+      </div>
+      <div class="flex items-center px-5 py-16 sm:px-10 lg:px-14 lg:py-20">
+        <div class="mx-auto w-full max-w-2xl">
+          <p class="eyebrow text-center">Ο παιδοδοντιατρος μας</p>
+          <h2 class="section-title mt-3 text-center">Θεόδωρος Κουιμτζής</h2>
+          <div class="mt-10 space-y-3">
+            <details class="group rounded-3xl border border-ink/10 bg-cream p-1" open>
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-5 rounded-[1.35rem] px-5 py-4 font-semibold"><span>Ποιότητα Σπουδών</span><span class="grid size-8 place-items-center rounded-full bg-mist text-mint-deep transition group-open:rotate-45">+</span></summary>
+              <ul class="rich-list px-5 pt-2 pb-6">
+                <li>Aποφοίτησε από την Οδοντιατρική Σχολή του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης, το 1984.</li>
+                <li>Συνέχισε τις μεταπτυχιακές του σπουδές στο Πανεπιστήμιο Nancy I, Γαλλία το 1986-1987 (CES Βιολογίας Στόματος)  και στην Παιδοδοντιατρική στη Οδοντιατρική σχολή του Πανεπιστημίου Paris V, René Descartes, το 1988-1989 (CES στην Παιδοδοντιατρική).</li>
+                <li>Εν συνεχεία, απέκτησε το δίπλωμα ειδίκευσης στη Βιολογία Στόματος (ΜSc) και το πιστοποιητικό κλινικής εξειδίκευσης στην Παιδοδοντιατρική από την Οδοντιατρική Σχολή του Εθνικού και Καποδιστριακού Πανεπιστημίου Αθηνών (1993-1996).</li>
+              </ul>
+            </details>
+            <details class="group rounded-3xl border border-ink/10 bg-cream p-1">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-5 rounded-[1.35rem] px-5 py-4 font-semibold"><span>Εμπειρία</span><span class="grid size-8 place-items-center rounded-full bg-mist text-mint-deep transition group-open:rotate-45">+</span></summary>
+              <ul class="rich-list px-5 pt-2 pb-6">
+                <li>Η πρακτική του άσκηση έγινε στις κλινικές των Νοσοκομείων της Γαλλίας: Centre Hospitalier Régional de Metz-Thionville, Hopital Robert Debré, Hopital Saint-Vincent-de-Paul και Hopital A. Chenevier (1986-1989).</li>
+                <li>Το χρονικό διάστημα 1990-1996 εργάστηκε ως επιστημονικός συνεργάτης στο τμήμα της Παιδοδοντιατρικής του Πανεπιστημίου Αθηνών.</li>
+                <li>Από το 1990 μέχρι σήμερα ασχολείται αποκλειστικά με την Οδοντιατρική για παιδιά και εφήβους στο οδοντιατρείο του στη Νέα Σμύρνη.</li>
+              </ul>
+            </details>
+            <details class="group rounded-3xl border border-ink/10 bg-cream p-1">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-5 rounded-[1.35rem] px-5 py-4 font-semibold"><span>Συνεχής μάθηση και βελτίωση</span><span class="grid size-8 place-items-center rounded-full bg-mist text-mint-deep transition group-open:rotate-45">+</span></summary>
+              <ul class="rich-list px-5 pt-2 pb-6">
+                <li>Έχει κάνει σημαντικό αριθμό δημοσιεύσεων σε επιστημονικά περιοδικά.</li>
+                <li>Είναι προσκεκλημένος ομιλητής και έχει συμμετάσχει ως ομιλητής σε πολλά οδοντιατρικά συνέδρια.</li>
+                <li>Ενημερώνεται διαρκώς από πανελλήνια και παγκόσμια οδοντιατρικά συνέδρια με σκοπό να προσφέρει καλύτερες υπηρεσίες με τον ιδανικό τρόπο και τα πιο φιλικά προς τον ασθενή υλικά και τεχνικές.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-mist py-20 sm:py-28">
+    <div class="section-shell">
+      <h2 class="section-title text-center uppercase">Κοινωνική δράση</h2>
+      <ul class="rich-list mx-auto mt-10 max-w-4xl rounded-[2rem] bg-white p-7 shadow-soft sm:p-10">
+        <li>Τη χρονική περίοδο 2008-2011 ήταν υπεύθυνος της Επιτροπής Πρόληψης του Οδοντιατρικού Συλλόγου Πειραιά. Οργάνωσε προγράμματα προαγωγής της στοματικής υγείας σε παιδιά και άλλες κοινωνικές ομάδες και συμμετείχε εθελοντικά στην πραγματοποίησή τους σε δεκάδες σχολεία, με τη βοήθεια κινητής οδοντιατρικής μονάδας.</li>
+        <li>Την περίοδο 2009-12 ήταν μέλος του Δ.Σ. της Ελληνικής Παιδοδοντικής Εταιρείας. Ως μέλος της οργανωτικής επιτροπής του 23ου συνεδρίου της Παγκόσμιας Ομοσπονδίας Παιδοδοντιατρικής (IAPD) που πραγματοποιήθηκε στην Αθήνα τον Ιούνιο του 2011, συμμετείχε ενεργά στην επιτυχία του.</li>
+        <li>Ιδρυτικό μέλος και πρόεδρος της Επιστημονικής Εταιρείας Αθλητικής Οδοντιατρικής (ΕΕΑΘΛΟ) επί 6 χρόνια, με πολλές συμμετοχές σε συνέδρια και σεμινάρια ως ομιλητής και αθλητής μαραθωνίου.</li>
+        <li>Συμμετέχει εθελοντικά, ως μέλος της ΕΕΑΘΛΟ στην ιατρική ομάδα υποστήριξης του μαραθωνίου και ημιμαραθωνίου της Αθήνας σε συνεργασία με τον ΣΕΓΑΣ και το ΕΚΑΒ.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-ocean py-20 text-white sm:py-28">
+    <div class="section-shell">
+      <h2 class="section-title mx-auto max-w-3xl text-center text-white">Τι λένε για τον Θεόδωρο Κουιμτζή</h2>
+      <div class="mt-12 grid gap-5 lg:grid-cols-3">
+        {reviews.map((review) => (
+          <figure class="flex flex-col rounded-[1.75rem] border border-white/15 bg-white/8 p-7 backdrop-blur-sm sm:p-8">
+            <blockquote class="grow leading-8 text-white/85">{review.quote}</blockquote>
+            <figcaption class="mt-7 border-t border-white/15 pt-5">
+              <strong class="block text-sm uppercase tracking-[0.08em]">{review.name}</strong>
+              <span class="mt-1 block text-xs text-mint">Google Reviews</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SplitFeature image="/img/ododiatros-theodoros-kouimtzis-exetasi-sxolio.jpg" title="Συμμετοχή σε προγράμματα πρόληψης και προαγωγής της στοματικής υγείας των παιδιών σε σχολεία" reverse>
+    <p>Η επίσκεψη στους παιδικούς σταθμούς και τα σχολεία έχει ως αποτέλεσμα, τη γραπτή ενημέρωση των γονιών για τη στοματική υγεία του παιδιού τους και την ενημέρωση των παιδιών για την καλύτερη φροντίδα των δοντιών τους.</p>
+  </SplitFeature>
+  <SplitFeature image="/img/theodoros-kouimtzis-omilia-sinedrio.jpg" title="Ιδρυτικό μέλος και Πρόεδρος της ΕΕΑΘΛΟ">
+    <p>Ιδρυτικό μέλος της Επιστημονικής Εταιρείας Αθλητικής Οδοντιατρικής (ΕΕΑΘΛΟ) και πρόεδρός της επί 6 χρόνια. Έχει πολλές συμμετοχές ως ομιλητής, σε θέματα κλινικής παιδοδοντιατρικής και αθλητικής οδοντιατρικής σε πανελλήνια οδοντιατρικά συνέδρια και σεμινάρια.</p>
+  </SplitFeature>
+  <SplitFeature image="/img/ododiatros-theodoros-kouimtzis-ethelodis.jpg" title="Ενεργός Εθελοντής" reverse>
+    <p>Συμμετέχει εθελοντικά, ως μέλος της ΕΕΑΘΛΟ στην ιατρική ομάδα υποστήριξης του μαραθωνίου και ημιμαραθωνίου της Αθήνας σε συνεργασία με τον ΣΕΓΑΣ και το ΕΚΑΒ.</p>
+  </SplitFeature>
+  <SplitFeature image="/img/ododiatros-theodoros-kouimtzis-athlitis-marathoniou.jpg" title="Αθλητης Μαραθωνίου">
+    <p>Έχει λάβει μέρος σε πληθώρα αγώνων δρόμου μεγάλων αποστάσεων και ευτύχισε να τερματίσει σε 17 μαραθωνίους στην Ελλάδα και το εξωτερικό. Η αγάπη του για τον αθλητισμό τον ώθησε να ασχοληθεί ιδιαίτερα με τα οδοντιατρικά προβλήματα των αθλητών. Είναι μέλος της Αμερικάνικης Εταιρείας Academy for Sport Dentistry (ASD).</p>
+  </SplitFeature>
+
+  <CTA />
+</BaseLayout>
