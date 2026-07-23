@@ -71,6 +71,7 @@ const responsiveImages = [
 ];
 
 for (const [source, outputName, widths] of responsiveImages) {
+  const avifQuality = outputName.startsWith('card-') ? 60 : 65;
   for (const width of widths) {
     const input = join(root, 'public', 'img', source);
     await Promise.all([
@@ -80,7 +81,7 @@ for (const [source, outputName, widths] of responsiveImages) {
         .toFile(join(imagesDir, `${outputName}-${width}.webp`)),
       sharp(input)
         .resize({ width, withoutEnlargement: true })
-        .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
+        .avif({ quality: avifQuality, effort: 8, chromaSubsampling: '4:4:4' })
         .toFile(join(imagesDir, `${outputName}-${width}.avif`)),
     ]);
   }

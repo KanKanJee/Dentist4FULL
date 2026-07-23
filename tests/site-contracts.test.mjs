@@ -100,6 +100,12 @@ test('critical fonts and homepage images are self-hosted and responsive', async 
   assert.match(home, /feature-examination-640\.webp 640w/);
   assert.match(home, /feature-examination-640\.avif 640w/);
   assert.doesNotMatch(home, /rel="stylesheet"/);
+  assert.match(home, /rel="preload" as="image"/);
+  assert.match(home, /imagesrcset="\/img\/performance\/hero-mobile-640\.avif 640w/);
+  assert.equal((home.match(/rel="preconnect"/g) ?? []).length, 1);
+  assert.match(home, /href="https:\/\/www\.googletagmanager\.com"/);
+  assert.match(home, /requestIdleCallback/);
+  assert.match(home, /addEventListener\(['"`]load['"`]/);
 });
 
 test('legacy URLs are permanent redirects', async () => {

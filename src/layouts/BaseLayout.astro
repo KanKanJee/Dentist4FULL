@@ -29,10 +29,32 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
     <link rel="icon" href="/img/favicon.ico" sizes="48x48" />
     <link rel="preload" href="/fonts/manrope-greek.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/roboto-greek.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preconnect" href="https://cdn-cookieyes.com" />
-    <link rel="preconnect" href="https://log.cookieyes.com" />
-    <link rel="preconnect" href="https://region1.google-analytics.com" />
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+    {canonicalPath === '/' && (
+      <>
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/img/performance/hero-mobile-768.avif"
+          imagesrcset="/img/performance/hero-mobile-640.avif 640w, /img/performance/hero-mobile-768.avif 768w, /img/performance/hero-mobile-960.avif 960w"
+          imagesizes="100vw"
+          media="(max-width: 639px)"
+          fetchpriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/img/performance/hero-desktop-1920.avif"
+          imagesrcset="/img/performance/hero-desktop-1280.avif 1280w, /img/performance/hero-desktop-1920.avif 1920w, /img/performance/hero-desktop-2560.avif 2560w"
+          imagesizes="100vw"
+          media="(min-width: 640px)"
+          fetchpriority="high"
+        />
+      </>
+    )}
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="//cdn-cookieyes.com" />
     <meta property="og:locale" content="el_GR" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Παιδοδοντίατρος Θεόδωρος Κουιμτζής Νέα Σμύρνη / Αθήνα" />
@@ -42,11 +64,32 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
     <meta property="og:image" content={socialImage} />
     <script is:inline>
       if (location.hostname === 'dentistforchildren.gr' || location.hostname === 'www.dentistforchildren.gr') {
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-N8VQXBC');
+        window.dataLayer = window.dataLayer || [];
+
+        const loadGtm = () => {
+          if (window.__dentistGtmLoaded) return;
+          window.__dentistGtmLoaded = true;
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+          const firstScript = document.getElementsByTagName('script')[0];
+          const gtmScript = document.createElement('script');
+          gtmScript.async = true;
+          gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-N8VQXBC';
+          firstScript.parentNode.insertBefore(gtmScript, firstScript);
+        };
+
+        const scheduleGtm = () => {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadGtm, { timeout: 1200 });
+          } else {
+            window.setTimeout(loadGtm, 0);
+          }
+        };
+
+        window.addEventListener('load', scheduleGtm, { once: true });
+        window.addEventListener('pointerdown', loadGtm, { once: true, passive: true });
+        window.addEventListener('touchstart', loadGtm, { once: true, passive: true });
+        window.addEventListener('keydown', loadGtm, { once: true });
       }
     </script>
   </head>
