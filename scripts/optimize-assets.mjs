@@ -5,6 +5,7 @@ import sharp from 'sharp';
 const root = process.cwd();
 const fontsDir = join(root, 'public', 'fonts');
 const imagesDir = join(root, 'public', 'img', 'performance');
+const avifVersion = 'v2';
 
 await Promise.all([
   mkdir(fontsDir, { recursive: true }),
@@ -42,7 +43,7 @@ for (const width of [1280, 1920, 2560]) {
     sharp(heroSource)
       .resize({ width, withoutEnlargement: true })
       .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
-      .toFile(join(imagesDir, `hero-desktop-${width}.avif`)),
+      .toFile(join(imagesDir, `hero-desktop-${width}-${avifVersion}.avif`)),
   ]);
 }
 
@@ -57,7 +58,7 @@ for (const width of [640, 768, 960]) {
       .extract({ left: 1134, top: 0, width: 1110, height: 2000 })
       .resize({ width })
       .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
-      .toFile(join(imagesDir, `hero-mobile-${width}.avif`)),
+      .toFile(join(imagesDir, `hero-mobile-${width}-${avifVersion}.avif`)),
   ]);
 }
 
@@ -82,7 +83,7 @@ for (const [source, outputName, widths] of responsiveImages) {
       sharp(input)
         .resize({ width, withoutEnlargement: true })
         .avif({ quality: avifQuality, effort: 8, chromaSubsampling: '4:4:4' })
-        .toFile(join(imagesDir, `${outputName}-${width}.avif`)),
+        .toFile(join(imagesDir, `${outputName}-${width}-${avifVersion}.avif`)),
     ]);
   }
 }
