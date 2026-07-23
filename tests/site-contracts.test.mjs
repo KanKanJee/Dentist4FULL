@@ -89,8 +89,8 @@ test('critical fonts and homepage images are self-hosted and responsive', async 
   const home = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 
   assert.doesNotMatch(home, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
-  assert.match(home, /href="\/fonts\/manrope-site-v1\.woff2"/);
-  assert.match(home, /href="\/fonts\/roboto-site-v1\.woff2"/);
+  assert.match(home, /href="\/fonts\/manrope-site-v2\.woff2"/);
+  assert.match(home, /href="\/fonts\/roboto-site-v2\.woff2"/);
   assert.match(home, /hero-mobile-640\.webp 640w/);
   assert.match(home, /hero-mobile-640-v2\.avif 640w/);
   assert.match(home, /hero-desktop-1280\.webp 1280w/);

@@ -13,7 +13,7 @@ await Promise.all([
   mkdir(imagesDir, { recursive: true }),
 ]);
 
-const siteFontFiles = ['manrope-site-v1.woff2', 'roboto-site-v1.woff2'];
+const siteFontFiles = ['manrope-site-v2.woff2', 'roboto-site-v2.woff2'];
 const missingSiteFonts = [];
 for (const filename of siteFontFiles) {
   try {
