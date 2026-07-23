@@ -37,9 +37,9 @@ const features = [
 ];
 
 const cards = [
-  { href: '/paidododiatros', image: '/img/masonry/ododiatros-theodoros-kouimtzis-bio.JPG', title: 'Παιδοδοντίατρος' },
-  { href: '/iatrio', image: '/img/masonry/iatrio-theodoros-kouimtzis.JPG', title: 'Ιατρείο' },
-  { href: '/ipiresies', image: '/img/masonry/ododiatros-theodoros-kouimtzis-ipiresies.jpg', title: 'Υπηρεσίες' },
+  { href: '/paidododiatros', image: '/img/masonry/ododiatros-theodoros-kouimtzis-bio.JPG', optimized: '/img/performance/card-doctor', title: 'Παιδοδοντίατρος' },
+  { href: '/iatrio', image: '/img/masonry/iatrio-theodoros-kouimtzis.JPG', optimized: '/img/performance/card-clinic', title: 'Ιατρείο' },
+  { href: '/ipiresies', image: '/img/masonry/ododiatros-theodoros-kouimtzis-ipiresies.jpg', optimized: '/img/performance/card-services', title: 'Υπηρεσίες' },
 ];
 ---
 
@@ -48,7 +48,20 @@ const cards = [
   description="Παιδοδοντίατρος Θεόδωρος Κουιμτζής, Νέα Σμύρνη. Εμπειρία χρόνων. Βαθιά διερεύνυση κάθε περιστατικού. Κλείστε ραντεβού τώρα."
 >
   <section class="relative flex min-h-[calc(100svh-5rem)] items-end overflow-hidden bg-ink sm:items-center">
-    <img src="/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg" alt="" class="absolute inset-0 size-full object-cover object-[60%_center]" fetchpriority="high" />
+    <picture class="absolute inset-0 size-full">
+      <source
+        media="(max-width: 639px)"
+        type="image/webp"
+        srcset="/img/performance/hero-mobile-640.webp 640w, /img/performance/hero-mobile-768.webp 768w, /img/performance/hero-mobile-960.webp 960w"
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset="/img/performance/hero-desktop-1280.webp 1280w, /img/performance/hero-desktop-1920.webp 1920w, /img/performance/hero-desktop-2560.webp 2560w"
+        sizes="100vw"
+      />
+      <img src="/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg" width="3000" height="2000" alt="" class="size-full object-cover object-center sm:object-[60%_center]" fetchpriority="high" />
+    </picture>
     <div class="absolute inset-0 bg-gradient-to-r from-night/85 via-night/48 to-transparent"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-night/65 via-transparent to-transparent"></div>
     <div class="section-shell relative py-20 sm:py-28 lg:py-32">
@@ -76,7 +89,14 @@ const cards = [
     <div class="section-shell grid gap-5 md:grid-cols-3">
       {cards.map((card) => (
         <a href={card.href} class="group relative min-h-[26rem] overflow-hidden rounded-[1.75rem] bg-ink shadow-soft">
-          <img src={card.image} alt="Pic" class="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+          <picture class="absolute inset-0 size-full">
+            <source
+              type="image/webp"
+              srcset={`${card.optimized}-480.webp 480w, ${card.optimized}-720.webp 720w, ${card.optimized}-768.webp 768w, ${card.optimized}-900.webp 900w`}
+              sizes="(min-width: 768px) 33vw, 100vw"
+            />
+            <img src={card.image} width="900" height="600" alt="Pic" class="size-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
+          </picture>
           <div class="absolute inset-0 bg-gradient-to-t from-night/80 via-night/5 to-transparent"></div>
           <div class="absolute inset-x-0 bottom-0 flex items-center justify-between p-7 text-white">
             <h2 class="text-xl font-medium uppercase tracking-[0.06em]">{card.title}</h2>
@@ -89,13 +109,13 @@ const cards = [
 
   <CTA />
 
-  <SplitFeature image="/img/theodoros-kouimtzis-exetasi-dodia.jpg" title="Υψηλής ποιότητας οδοντιατρικές υπηρεσίες που διαρκούν.">
+  <SplitFeature image="/img/theodoros-kouimtzis-exetasi-dodia.jpg" responsiveBase="/img/performance/feature-examination" title="Υψηλής ποιότητας οδοντιατρικές υπηρεσίες που διαρκούν.">
     <p>Θέλετε να προσφέρετε στα παιδιά σας το καλύτερο. Το ίδιο και εμείς. Χάρη στα 30 χρόνια γνώσης και εμπειρίας μας, σας παρέχουμε το καλύτερο δυνατό αποτέλεσμα που διαρκεί.</p>
   </SplitFeature>
-  <SplitFeature image="/img/voithos-iatriou-theodorou-kouimtzi.jpg" title="Λιγότερο κόστος μακροπρόθεσμα." reverse>
+  <SplitFeature image="/img/voithos-iatriou-theodorou-kouimtzi.jpg" responsiveBase="/img/performance/feature-assistant" title="Λιγότερο κόστος μακροπρόθεσμα." reverse>
     <p>H επιμονή μας για την πρόληψη, βοηθάει το παιδί σας να αποφεύγει μακροπρόθεσμα, χρονοβόρες και κοστοβόρες θεραπείες.<br />Το αποτέλεσμα είναι ένα υγιές χαμόγελο που διαρκεί, χωρίς ταλαιπωρία.</p>
   </SplitFeature>
-  <SplitFeature image="/img/ododiatros-theodoros-kouimtzis-panoramiki.jpg" title="Συνολική αντιμετώπιση του παιδιού.">
+  <SplitFeature image="/img/ododiatros-theodoros-kouimtzis-panoramiki.jpg" responsiveBase="/img/performance/feature-panoramic" title="Συνολική αντιμετώπιση του παιδιού.">
     <p>Αντιμετωπίζουμε συνολικά το παιδί σας από την εμφάνιση του πρώτου του παιδικού δοντιού μέχρι την ενηλικίωσή του. Μείνετε σίγουροι πως το παιδί σας θα μπορεί χαμογελάει με αυτοπεποίθηση.</p>
   </SplitFeature>
 

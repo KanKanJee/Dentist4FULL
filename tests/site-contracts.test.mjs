@@ -85,6 +85,18 @@ test('the narrow mobile hero title fits and a back-to-top control is available',
   assert.match(home, /scrollTo\(/);
 });
 
+test('critical fonts and homepage images are self-hosted and responsive', async () => {
+  const home = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
+
+  assert.doesNotMatch(home, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
+  assert.match(home, /href="\/fonts\/manrope-greek\.woff2"/);
+  assert.match(home, /href="\/fonts\/roboto-greek\.woff2"/);
+  assert.match(home, /hero-mobile-640\.webp 640w/);
+  assert.match(home, /hero-desktop-1280\.webp 1280w/);
+  assert.match(home, /card-doctor-480\.webp 480w/);
+  assert.match(home, /feature-examination-640\.webp 640w/);
+});
+
 test('legacy URLs are permanent redirects', async () => {
   const redirects = await readFile(new URL('../dist/_redirects', import.meta.url), 'utf8');
   const rules = redirects

@@ -1,17 +1,29 @@
 ---
 interface Props {
   image: string;
+  responsiveBase?: string;
   alt?: string;
   title: string;
   reverse?: boolean;
 }
-const { image, alt = '', title, reverse = false } = Astro.props;
+const { image, responsiveBase, alt = '', title, reverse = false } = Astro.props;
 ---
 
 <section class="bg-white">
   <div class="grid min-h-[34rem] lg:grid-cols-2">
     <div class:list={['relative min-h-[24rem] overflow-hidden lg:min-h-full', reverse && 'lg:order-2']}>
-      <img src={image} alt={alt} class="absolute inset-0 size-full object-cover transition duration-700 hover:scale-[1.02]" loading="lazy" />
+      {responsiveBase ? (
+        <picture class="absolute inset-0 size-full">
+          <source
+            type="image/webp"
+            srcset={`${responsiveBase}-640.webp 640w, ${responsiveBase}-768.webp 768w, ${responsiveBase}-960.webp 960w, ${responsiveBase}-1440.webp 1440w`}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+          <img src={image} alt={alt} width="2238" height="1492" class="size-full object-cover transition duration-700 hover:scale-[1.02]" loading="lazy" decoding="async" />
+        </picture>
+      ) : (
+        <img src={image} alt={alt} class="absolute inset-0 size-full object-cover transition duration-700 hover:scale-[1.02]" loading="lazy" decoding="async" />
+      )}
     </div>
     <div class:list={['flex items-center px-6 py-16 sm:px-12 lg:px-[12%] lg:py-24', reverse && 'lg:order-1']}>
       <div class="max-w-xl">
