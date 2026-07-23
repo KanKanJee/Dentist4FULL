@@ -6,6 +6,7 @@ const root = process.cwd();
 const fontsDir = join(root, 'public', 'fonts');
 const imagesDir = join(root, 'public', 'img', 'performance');
 const avifVersion = 'v2';
+const heroAvifVersion = 'v3';
 const cardDoctorAvifVersion = 'v3';
 
 await Promise.all([
@@ -66,8 +67,8 @@ for (const width of [1280, 1920, 2560]) {
       .toFile(join(imagesDir, `hero-desktop-${width}.webp`)),
     sharp(heroSource)
       .resize({ width, withoutEnlargement: true })
-      .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
-      .toFile(join(imagesDir, `hero-desktop-${width}-${avifVersion}.avif`)),
+      .avif({ quality: 60, effort: 8, chromaSubsampling: '4:4:4' })
+      .toFile(join(imagesDir, `hero-desktop-${width}-${heroAvifVersion}.avif`)),
   ]);
 }
 
@@ -81,8 +82,8 @@ for (const width of [640, 768, 960]) {
     sharp(heroSource)
       .extract({ left: 1134, top: 0, width: 1110, height: 2000 })
       .resize({ width })
-      .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
-      .toFile(join(imagesDir, `hero-mobile-${width}-${avifVersion}.avif`)),
+      .avif({ quality: 60, effort: 8, chromaSubsampling: '4:4:4' })
+      .toFile(join(imagesDir, `hero-mobile-${width}-${heroAvifVersion}.avif`)),
   ]);
 }
 

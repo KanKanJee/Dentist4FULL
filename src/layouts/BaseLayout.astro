@@ -28,16 +28,14 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/img/favicon.ico" sizes="48x48" />
-    <link rel="preload" href="/fonts/manrope-site-v2.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/roboto-site-v2.woff2" as="font" type="font/woff2" crossorigin />
     {canonicalPath === '/' && (
       <>
         <link
           rel="preload"
           as="image"
           type="image/avif"
-          href="/img/performance/hero-mobile-768-v2.avif"
-          imagesrcset="/img/performance/hero-mobile-640-v2.avif 640w, /img/performance/hero-mobile-768-v2.avif 768w, /img/performance/hero-mobile-960-v2.avif 960w"
+          href="/img/performance/hero-mobile-768-v3.avif"
+          imagesrcset="/img/performance/hero-mobile-640-v3.avif 640w, /img/performance/hero-mobile-768-v3.avif 768w, /img/performance/hero-mobile-960-v3.avif 960w"
           imagesizes="100vw"
           media="(max-width: 639px)"
           fetchpriority="high"
@@ -46,14 +44,16 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
           rel="preload"
           as="image"
           type="image/avif"
-          href="/img/performance/hero-desktop-1920-v2.avif"
-          imagesrcset="/img/performance/hero-desktop-1280-v2.avif 1280w, /img/performance/hero-desktop-1920-v2.avif 1920w, /img/performance/hero-desktop-2560-v2.avif 2560w"
+          href="/img/performance/hero-desktop-1920-v3.avif"
+          imagesrcset="/img/performance/hero-desktop-1280-v3.avif 1280w, /img/performance/hero-desktop-1920-v3.avif 1920w, /img/performance/hero-desktop-2560-v3.avif 2560w"
           imagesizes="100vw"
           media="(min-width: 640px)"
           fetchpriority="high"
         />
       </>
     )}
+    <link rel="preload" href="/fonts/manrope-site-v2.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low" />
+    <link rel="preload" href="/fonts/roboto-site-v2.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low" />
     <meta property="og:locale" content="el_GR" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Παιδοδοντίατρος Θεόδωρος Κουιμτζής Νέα Σμύρνη / Αθήνα" />
