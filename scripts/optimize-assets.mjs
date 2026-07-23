@@ -6,30 +6,54 @@ const root = process.cwd();
 const fontsDir = join(root, 'public', 'fonts');
 const imagesDir = join(root, 'public', 'img', 'performance');
 const avifVersion = 'v2';
+const cardDoctorAvifVersion = 'v3';
 
 await Promise.all([
   mkdir(fontsDir, { recursive: true }),
   mkdir(imagesDir, { recursive: true }),
 ]);
 
-const fonts = {
-  'manrope-greek.woff2': 'https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggSxSuXd.woff2',
-  'manrope-latin.woff2': 'https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2',
-  'roboto-greek.woff2': 'https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2',
-  'roboto-latin.woff2': 'https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2',
-};
-
-for (const [filename, url] of Object.entries(fonts)) {
-  const output = join(fontsDir, filename);
+const siteFontFiles = ['manrope-site-v1.woff2', 'roboto-site-v1.woff2'];
+const missingSiteFonts = [];
+for (const filename of siteFontFiles) {
   try {
-    await access(output);
-    continue;
+    await access(join(fontsDir, filename));
   } catch {
-    // Download the font when it is not already available locally.
+    missingSiteFonts.push(filename);
   }
-  const response = await fetch(url);
-  if (!response.ok) throw new Error(`Unable to download ${url}: ${response.status}`);
-  await writeFile(output, Buffer.from(await response.arrayBuffer()));
+}
+
+if (missingSiteFonts.length > 0) {
+  const ascii = Array.from({ length: 95 }, (_, index) => String.fromCodePoint(32 + index)).join('');
+  const greek = Array.from({ length: 144 }, (_, index) => String.fromCodePoint(0x0370 + index)).join('');
+  const symbols = [
+    0x00a0, 0x00a9, 0x00ab, 0x00b7, 0x00bb, 0x00d7, 0x00e9, 0x2013, 0x2014,
+    0x2018, 0x2019, 0x201c, 0x201d,
+    0x2026, 0x20ac, 0x2191, 0x2192, 0x2193, 0x2197, 0x25f7, 0x2661, 0x2713,
+    0x2726, 0x2764, 0xfe0f,
+  ].map((codePoint) => String.fromCodePoint(codePoint)).join('');
+  const fontCssUrl = new URL('https://fonts.googleapis.com/css2');
+  fontCssUrl.searchParams.set('family', 'Manrope:wght@400..700');
+  fontCssUrl.searchParams.append('family', 'Roboto:wght@300..500');
+  fontCssUrl.searchParams.set('display', 'swap');
+  fontCssUrl.searchParams.set('text', ascii + greek + symbols);
+
+  const cssResponse = await fetch(fontCssUrl, {
+    headers: {
+      'user-agent': 'Mozilla/5.0 AppleWebKit/537.36 Chrome/149.0.0.0 Safari/537.36',
+    },
+  });
+  if (!cssResponse.ok) throw new Error(`Unable to download ${fontCssUrl}: ${cssResponse.status}`);
+  const fontUrls = [...(await cssResponse.text()).matchAll(/url\((https:\/\/fonts\.gstatic\.com\/[^)]+)\)/g)]
+    .map((match) => match[1]);
+  if (fontUrls.length !== siteFontFiles.length) throw new Error('Unexpected Google Fonts subset response.');
+
+  for (const [index, filename] of siteFontFiles.entries()) {
+    if (!missingSiteFonts.includes(filename)) continue;
+    const response = await fetch(fontUrls[index]);
+    if (!response.ok) throw new Error(`Unable to download ${fontUrls[index]}: ${response.status}`);
+    await writeFile(join(fontsDir, filename), Buffer.from(await response.arrayBuffer()));
+  }
 }
 
 const heroSource = join(root, 'public', 'img', 'ododiatros-theodoros-kouimtzis-sto-iatrio.jpg');
@@ -72,7 +96,8 @@ const responsiveImages = [
 ];
 
 for (const [source, outputName, widths] of responsiveImages) {
-  const avifQuality = outputName.startsWith('card-') ? 60 : 65;
+  const avifQuality = outputName === 'card-doctor' ? 54 : outputName.startsWith('card-') ? 60 : 65;
+  const outputAvifVersion = outputName === 'card-doctor' ? cardDoctorAvifVersion : avifVersion;
   for (const width of widths) {
     const input = join(root, 'public', 'img', source);
     await Promise.all([
@@ -83,7 +108,7 @@ for (const [source, outputName, widths] of responsiveImages) {
       sharp(input)
         .resize({ width, withoutEnlargement: true })
         .avif({ quality: avifQuality, effort: 8, chromaSubsampling: '4:4:4' })
-        .toFile(join(imagesDir, `${outputName}-${width}-${avifVersion}.avif`)),
+        .toFile(join(imagesDir, `${outputName}-${width}-${outputAvifVersion}.avif`)),
     ]);
   }
 }

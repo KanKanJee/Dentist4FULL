@@ -37,9 +37,9 @@ const features = [
 ];
 
 const cards = [
-  { href: '/paidododiatros', image: '/img/masonry/ododiatros-theodoros-kouimtzis-bio.JPG', optimized: '/img/performance/card-doctor', title: 'Παιδοδοντίατρος' },
-  { href: '/iatrio', image: '/img/masonry/iatrio-theodoros-kouimtzis.JPG', optimized: '/img/performance/card-clinic', title: 'Ιατρείο' },
-  { href: '/ipiresies', image: '/img/masonry/ododiatros-theodoros-kouimtzis-ipiresies.jpg', optimized: '/img/performance/card-services', title: 'Υπηρεσίες' },
+  { href: '/paidododiatros', image: '/img/masonry/ododiatros-theodoros-kouimtzis-bio.JPG', optimized: '/img/performance/card-doctor', avifVersion: 'v3', title: 'Παιδοδοντίατρος' },
+  { href: '/iatrio', image: '/img/masonry/iatrio-theodoros-kouimtzis.JPG', optimized: '/img/performance/card-clinic', avifVersion: 'v2', title: 'Ιατρείο' },
+  { href: '/ipiresies', image: '/img/masonry/ododiatros-theodoros-kouimtzis-ipiresies.jpg', optimized: '/img/performance/card-services', avifVersion: 'v2', title: 'Υπηρεσίες' },
 ];
 ---
 
@@ -103,7 +103,7 @@ const cards = [
           <picture class="absolute inset-0 size-full">
             <source
               type="image/avif"
-              srcset={`${card.optimized}-480-v2.avif 480w, ${card.optimized}-720-v2.avif 720w, ${card.optimized}-768-v2.avif 768w, ${card.optimized}-900-v2.avif 900w`}
+              srcset={`${card.optimized}-480-${card.avifVersion}.avif 480w, ${card.optimized}-720-${card.avifVersion}.avif 720w, ${card.optimized}-768-${card.avifVersion}.avif 768w, ${card.optimized}-900-${card.avifVersion}.avif 900w`}
               sizes="(min-width: 768px) calc(33vw - 1.5rem), calc(100vw - 2.5rem)"
             />
             <source

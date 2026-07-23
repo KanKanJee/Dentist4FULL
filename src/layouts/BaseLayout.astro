@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -27,8 +28,8 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/img/favicon.ico" sizes="48x48" />
-    <link rel="preload" href="/fonts/manrope-greek.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/roboto-greek.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-site-v1.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/roboto-site-v1.woff2" as="font" type="font/woff2" crossorigin />
     {canonicalPath === '/' && (
       <>
         <link
@@ -53,8 +54,6 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
         />
       </>
     )}
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="//cdn-cookieyes.com" />
     <meta property="og:locale" content="el_GR" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Παιδοδοντίατρος Θεόδωρος Κουιμτζής Νέα Σμύρνη / Αθήνα" />
@@ -63,8 +62,36 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
     <meta property="og:site_name" content="Παιδοδοντίατρος Θεόδωρος Κουιμτζής Νέα Σμύρνη / Αθήνα" />
     <meta property="og:image" content={socialImage} />
     <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      const readCookie = (name) => {
+        const prefix = `${name}=`;
+        const entry = document.cookie.split('; ').find((cookie) => cookie.startsWith(prefix));
+        return entry ? decodeURIComponent(entry.slice(prefix.length)) : '';
+      };
+      const storedConsent = readCookie('dentist_cookie_consent');
+      const legacyConsent = readCookie('cookieyes-consent');
+      const consent = {
+        decided: storedConsent.startsWith('v1|') || /(?:^|,)action:yes(?:,|$)/.test(legacyConsent),
+        analytics: /(?:^|\|)analytics:1(?:\||$)/.test(storedConsent) || /(?:^|,)analytics:yes(?:,|$)/.test(legacyConsent),
+        advertising: /(?:^|\|)advertising:1(?:\||$)/.test(storedConsent) || /(?:^|,)advertisement:yes(?:,|$)/.test(legacyConsent),
+      };
+      window.__dentistConsent = consent;
+
       if (location.hostname === 'dentistforchildren.gr' || location.hostname === 'www.dentistforchildren.gr') {
-        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'gtm.blocklist': ['sandboxedScripts'] });
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag('consent', 'default', {
+          ad_storage: consent.advertising ? 'granted' : 'denied',
+          ad_user_data: consent.advertising ? 'granted' : 'denied',
+          ad_personalization: consent.advertising ? 'granted' : 'denied',
+          analytics_storage: consent.analytics ? 'granted' : 'denied',
+          functionality_storage: 'granted',
+          security_storage: 'granted',
+        });
+        window.gtag('set', 'ads_data_redaction', true);
+        window.gtag('set', 'url_passthrough', true);
 
         const loadGtm = () => {
           if (window.__dentistGtmLoaded) return;
@@ -77,6 +104,7 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
           gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-N8VQXBC';
           firstScript.parentNode.insertBefore(gtmScript, firstScript);
         };
+        window.__loadDentistGtm = loadGtm;
 
         const scheduleGtm = () => {
           if ('requestIdleCallback' in window) {
@@ -86,21 +114,22 @@ const socialImage = new URL('/img/ododiatros-theodoros-kouimtzis-sto-iatrio.jpg'
           }
         };
 
-        window.addEventListener('load', scheduleGtm, { once: true });
-        window.addEventListener('pointerdown', loadGtm, { once: true, passive: true });
-        window.addEventListener('touchstart', loadGtm, { once: true, passive: true });
-        window.addEventListener('keydown', loadGtm, { once: true });
+        if (consent.decided && (consent.analytics || consent.advertising)) {
+          window.addEventListener('load', scheduleGtm, { once: true });
+        }
       }
     </script>
   </head>
   <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N8VQXBC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <Fragment set:html="<!--email_off-->" />
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-5 focus:py-3">Μετάβαση στο περιεχόμενο</a>
     <Header />
     <main id="main-content">
       <slot />
     </main>
     <BackToTop />
+    <CookieConsent />
     <Footer />
+    <Fragment set:html="<!--/email_off-->" />
   </body>
 </html>

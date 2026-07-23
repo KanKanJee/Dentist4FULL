@@ -1,0 +1,168 @@
+<div class="fixed inset-x-4 bottom-4 z-[90] mx-auto max-w-xl" data-consent-banner hidden>
+  <section
+    class="rounded-[1.5rem] border border-ink/10 bg-white p-5 text-ink shadow-2xl sm:p-6"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="consent-title"
+    aria-describedby="consent-description"
+  >
+    <h2 id="consent-title" class="text-lg font-semibold">We value your privacy</h2>
+    <p id="consent-description" class="mt-2 text-sm leading-6 text-ink-soft">
+      We use cookies to improve your experience, personalize ads and content, and analyze our traffic.
+      By clicking “Accept All”, you consent to our use of cookies.
+    </p>
+    <div class="mt-5 grid gap-2 sm:grid-cols-3">
+      <button type="button" class="min-h-11 rounded-full bg-ocean px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-mint-deep" data-consent-accept>Accept All</button>
+      <button type="button" class="min-h-11 rounded-full border border-ocean px-4 py-2.5 text-sm font-semibold text-ocean transition hover:bg-mist" data-consent-customize>Customize</button>
+      <button type="button" class="min-h-11 rounded-full bg-ocean px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-mint-deep" data-consent-reject>Reject All</button>
+    </div>
+    <div class="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-ink-soft">
+      <a class="underline decoration-ink/25 underline-offset-4 hover:text-ink" href="/privacy-policy">Privacy Policy</a>
+      <a class="underline decoration-ink/25 underline-offset-4 hover:text-ink" href="/cookie-policy">Cookie Policy</a>
+    </div>
+  </section>
+</div>
+
+<button
+  type="button"
+  class="fixed bottom-4 left-4 z-40 grid size-12 place-items-center rounded-full bg-ocean text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-mint-deep sm:bottom-6 sm:left-6"
+  aria-label="Cookie preferences"
+  data-consent-revisit
+  hidden
+>
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 3 5.5 5.7v5.5c0 4.3 2.7 7.8 6.5 9.8 3.8-2 6.5-5.5 6.5-9.8V5.7L12 3Z" />
+    <path d="M9.2 11.8 11 13.6l4-4" />
+  </svg>
+</button>
+
+<dialog class="m-auto w-[min(92vw,36rem)] rounded-[1.5rem] bg-white p-0 text-ink shadow-2xl backdrop:bg-night/75" data-consent-dialog>
+  <section class="max-h-[90vh] overflow-y-auto p-6 sm:p-8" aria-labelledby="preferences-title">
+    <div class="flex items-start justify-between gap-5">
+      <div>
+        <h2 id="preferences-title" class="text-2xl font-medium">Cookie preferences</h2>
+        <p class="mt-2 text-sm leading-6 text-ink-soft">Choose which optional cookies you allow. Necessary cookies are always active.</p>
+      </div>
+      <button type="button" class="grid size-10 shrink-0 place-items-center rounded-full bg-mist text-xl" aria-label="Close cookie preferences" data-consent-close>×</button>
+    </div>
+
+    <div class="mt-7 divide-y divide-ink/10 rounded-2xl border border-ink/10">
+      <div class="flex items-center justify-between gap-5 p-4">
+        <div>
+          <h3 class="font-semibold">Necessary</h3>
+          <p class="mt-1 text-sm text-ink-soft">Required for the website to function.</p>
+        </div>
+        <span class="text-sm font-semibold text-mint-deep">Always active</span>
+      </div>
+      <label class="flex cursor-pointer items-center justify-between gap-5 p-4">
+        <span>
+          <span class="block font-semibold">Analytics</span>
+          <span class="mt-1 block text-sm text-ink-soft">Helps us understand how the website is used.</span>
+        </span>
+        <input type="checkbox" class="size-5 accent-ocean" data-consent-analytics />
+      </label>
+      <label class="flex cursor-pointer items-center justify-between gap-5 p-4">
+        <span>
+          <span class="block font-semibold">Advertising</span>
+          <span class="mt-1 block text-sm text-ink-soft">Supports Google Ads measurement and personalization.</span>
+        </span>
+        <input type="checkbox" class="size-5 accent-ocean" data-consent-advertising />
+      </label>
+    </div>
+
+    <div class="mt-7 grid gap-2 sm:grid-cols-2">
+      <button type="button" class="min-h-11 rounded-full border border-ocean px-5 py-2.5 text-sm font-semibold text-ocean transition hover:bg-mist" data-consent-save>Save preferences</button>
+      <button type="button" class="min-h-11 rounded-full bg-ocean px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-mint-deep" data-consent-dialog-accept>Accept All</button>
+    </div>
+  </section>
+</dialog>
+
+<script>
+  type ConsentState = {
+    decided: boolean;
+    analytics: boolean;
+    advertising: boolean;
+  };
+
+  declare global {
+    interface Window {
+      __dentistConsent?: ConsentState;
+      __loadDentistGtm?: () => void;
+      dataLayer?: unknown[];
+      gtag?: (...args: unknown[]) => void;
+    }
+  }
+
+  const banner = document.querySelector('[data-consent-banner]');
+  const revisit = document.querySelector('[data-consent-revisit]');
+  const dialog = document.querySelector('[data-consent-dialog]');
+  const analyticsToggle = document.querySelector('[data-consent-analytics]');
+  const advertisingToggle = document.querySelector('[data-consent-advertising]');
+  const currentConsent = window.__dentistConsent ?? {
+    decided: false,
+    analytics: false,
+    advertising: false,
+  };
+
+  const showBanner = () => {
+    if (banner instanceof HTMLElement) banner.hidden = false;
+    if (revisit instanceof HTMLButtonElement) revisit.hidden = true;
+  };
+  const hideBanner = () => {
+    if (banner instanceof HTMLElement) banner.hidden = true;
+    if (revisit instanceof HTMLButtonElement) revisit.hidden = false;
+  };
+  const openPreferences = () => {
+    if (analyticsToggle instanceof HTMLInputElement) analyticsToggle.checked = currentConsent.analytics;
+    if (advertisingToggle instanceof HTMLInputElement) advertisingToggle.checked = currentConsent.advertising;
+    if (dialog instanceof HTMLDialogElement) dialog.showModal();
+  };
+  const closePreferences = () => {
+    if (dialog instanceof HTMLDialogElement) dialog.close();
+  };
+  const saveConsent = (analytics: boolean, advertising: boolean) => {
+    const nextConsent = { decided: true, analytics, advertising };
+    window.__dentistConsent = nextConsent;
+    Object.assign(currentConsent, nextConsent);
+
+    const value = `v1|analytics:${analytics ? 1 : 0}|advertising:${advertising ? 1 : 0}`;
+    document.cookie = `dentist_cookie_consent=${encodeURIComponent(value)}; Max-Age=15552000; Path=/; SameSite=Lax; Secure`;
+
+    window.gtag?.('consent', 'update', {
+      ad_storage: advertising ? 'granted' : 'denied',
+      ad_user_data: advertising ? 'granted' : 'denied',
+      ad_personalization: advertising ? 'granted' : 'denied',
+      analytics_storage: analytics ? 'granted' : 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+    });
+    window.dataLayer?.push({
+      event: 'dentist_consent_update',
+      consent_analytics: analytics,
+      consent_advertising: advertising,
+    });
+
+    if (analytics || advertising) window.__loadDentistGtm?.();
+    closePreferences();
+    hideBanner();
+  };
+
+  document.querySelector('[data-consent-accept]')?.addEventListener('click', () => saveConsent(true, true));
+  document.querySelector('[data-consent-reject]')?.addEventListener('click', () => saveConsent(false, false));
+  document.querySelector('[data-consent-customize]')?.addEventListener('click', openPreferences);
+  document.querySelector('[data-consent-dialog-accept]')?.addEventListener('click', () => saveConsent(true, true));
+  document.querySelector('[data-consent-save]')?.addEventListener('click', () => {
+    saveConsent(
+      analyticsToggle instanceof HTMLInputElement && analyticsToggle.checked,
+      advertisingToggle instanceof HTMLInputElement && advertisingToggle.checked,
+    );
+  });
+  document.querySelector('[data-consent-close]')?.addEventListener('click', closePreferences);
+  revisit?.addEventListener('click', openPreferences);
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closePreferences();
+  });
+
+  if (currentConsent.decided) hideBanner();
+  else showBanner();
+</script>
