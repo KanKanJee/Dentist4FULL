@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { access, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import sharp from 'sharp';
 
@@ -19,26 +19,46 @@ const fonts = {
 };
 
 for (const [filename, url] of Object.entries(fonts)) {
+  const output = join(fontsDir, filename);
+  try {
+    await access(output);
+    continue;
+  } catch {
+    // Download the font when it is not already available locally.
+  }
   const response = await fetch(url);
   if (!response.ok) throw new Error(`Unable to download ${url}: ${response.status}`);
-  await writeFile(join(fontsDir, filename), Buffer.from(await response.arrayBuffer()));
+  await writeFile(output, Buffer.from(await response.arrayBuffer()));
 }
 
 const heroSource = join(root, 'public', 'img', 'ododiatros-theodoros-kouimtzis-sto-iatrio.jpg');
 
 for (const width of [1280, 1920, 2560]) {
-  await sharp(heroSource)
-    .resize({ width, withoutEnlargement: true })
-    .webp({ quality: 88, smartSubsample: true, effort: 5 })
-    .toFile(join(imagesDir, `hero-desktop-${width}.webp`));
+  await Promise.all([
+    sharp(heroSource)
+      .resize({ width, withoutEnlargement: true })
+      .webp({ quality: 88, smartSubsample: true, effort: 5 })
+      .toFile(join(imagesDir, `hero-desktop-${width}.webp`)),
+    sharp(heroSource)
+      .resize({ width, withoutEnlargement: true })
+      .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
+      .toFile(join(imagesDir, `hero-desktop-${width}.avif`)),
+  ]);
 }
 
 for (const width of [640, 768, 960]) {
-  await sharp(heroSource)
-    .extract({ left: 1134, top: 0, width: 1110, height: 2000 })
-    .resize({ width })
-    .webp({ quality: 90, smartSubsample: true, effort: 5 })
-    .toFile(join(imagesDir, `hero-mobile-${width}.webp`));
+  await Promise.all([
+    sharp(heroSource)
+      .extract({ left: 1134, top: 0, width: 1110, height: 2000 })
+      .resize({ width })
+      .webp({ quality: 90, smartSubsample: true, effort: 5 })
+      .toFile(join(imagesDir, `hero-mobile-${width}.webp`)),
+    sharp(heroSource)
+      .extract({ left: 1134, top: 0, width: 1110, height: 2000 })
+      .resize({ width })
+      .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
+      .toFile(join(imagesDir, `hero-mobile-${width}.avif`)),
+  ]);
 }
 
 const responsiveImages = [
@@ -52,11 +72,18 @@ const responsiveImages = [
 
 for (const [source, outputName, widths] of responsiveImages) {
   for (const width of widths) {
-    await sharp(join(root, 'public', 'img', source))
-      .resize({ width, withoutEnlargement: true })
-      .webp({ quality: 88, smartSubsample: true, effort: 5 })
-      .toFile(join(imagesDir, `${outputName}-${width}.webp`));
+    const input = join(root, 'public', 'img', source);
+    await Promise.all([
+      sharp(input)
+        .resize({ width, withoutEnlargement: true })
+        .webp({ quality: 88, smartSubsample: true, effort: 5 })
+        .toFile(join(imagesDir, `${outputName}-${width}.webp`)),
+      sharp(input)
+        .resize({ width, withoutEnlargement: true })
+        .avif({ quality: 68, effort: 8, chromaSubsampling: '4:4:4' })
+        .toFile(join(imagesDir, `${outputName}-${width}.avif`)),
+    ]);
   }
 }
 
-console.log('Optimized fonts and responsive images generated.');
+console.log('Optimized fonts and responsive WebP/AVIF images generated.');

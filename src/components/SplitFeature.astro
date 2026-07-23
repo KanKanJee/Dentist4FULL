@@ -15,6 +15,11 @@ const { image, responsiveBase, alt = '', title, reverse = false } = Astro.props;
       {responsiveBase ? (
         <picture class="absolute inset-0 size-full">
           <source
+            type="image/avif"
+            srcset={`${responsiveBase}-640.avif 640w, ${responsiveBase}-768.avif 768w, ${responsiveBase}-960.avif 960w, ${responsiveBase}-1440.avif 1440w`}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+          <source
             type="image/webp"
             srcset={`${responsiveBase}-640.webp 640w, ${responsiveBase}-768.webp 768w, ${responsiveBase}-960.webp 960w, ${responsiveBase}-1440.webp 1440w`}
             sizes="(min-width: 1024px) 50vw, 100vw"

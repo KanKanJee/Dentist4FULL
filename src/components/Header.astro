@@ -65,7 +65,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     if (!open) revealHeader();
   });
 
-  let lastScrollY = window.scrollY;
+  let lastScrollY = 0;
   let ticking = false;
 
   const updateHeader = () => {

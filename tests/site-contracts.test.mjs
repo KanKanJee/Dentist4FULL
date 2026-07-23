@@ -92,9 +92,14 @@ test('critical fonts and homepage images are self-hosted and responsive', async 
   assert.match(home, /href="\/fonts\/manrope-greek\.woff2"/);
   assert.match(home, /href="\/fonts\/roboto-greek\.woff2"/);
   assert.match(home, /hero-mobile-640\.webp 640w/);
+  assert.match(home, /hero-mobile-640\.avif 640w/);
   assert.match(home, /hero-desktop-1280\.webp 1280w/);
+  assert.match(home, /hero-desktop-1280\.avif 1280w/);
   assert.match(home, /card-doctor-480\.webp 480w/);
+  assert.match(home, /card-doctor-480\.avif 480w/);
   assert.match(home, /feature-examination-640\.webp 640w/);
+  assert.match(home, /feature-examination-640\.avif 640w/);
+  assert.doesNotMatch(home, /rel="stylesheet"/);
 });
 
 test('legacy URLs are permanent redirects', async () => {

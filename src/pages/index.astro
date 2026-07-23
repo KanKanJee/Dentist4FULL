@@ -51,6 +51,17 @@ const cards = [
     <picture class="absolute inset-0 size-full">
       <source
         media="(max-width: 639px)"
+        type="image/avif"
+        srcset="/img/performance/hero-mobile-640.avif 640w, /img/performance/hero-mobile-768.avif 768w, /img/performance/hero-mobile-960.avif 960w"
+        sizes="100vw"
+      />
+      <source
+        type="image/avif"
+        srcset="/img/performance/hero-desktop-1280.avif 1280w, /img/performance/hero-desktop-1920.avif 1920w, /img/performance/hero-desktop-2560.avif 2560w"
+        sizes="100vw"
+      />
+      <source
+        media="(max-width: 639px)"
         type="image/webp"
         srcset="/img/performance/hero-mobile-640.webp 640w, /img/performance/hero-mobile-768.webp 768w, /img/performance/hero-mobile-960.webp 960w"
         sizes="100vw"
@@ -91,9 +102,14 @@ const cards = [
         <a href={card.href} class="group relative min-h-[26rem] overflow-hidden rounded-[1.75rem] bg-ink shadow-soft">
           <picture class="absolute inset-0 size-full">
             <source
+              type="image/avif"
+              srcset={`${card.optimized}-480.avif 480w, ${card.optimized}-720.avif 720w, ${card.optimized}-768.avif 768w, ${card.optimized}-900.avif 900w`}
+              sizes="(min-width: 768px) calc(33vw - 1.5rem), calc(100vw - 2.5rem)"
+            />
+            <source
               type="image/webp"
               srcset={`${card.optimized}-480.webp 480w, ${card.optimized}-720.webp 720w, ${card.optimized}-768.webp 768w, ${card.optimized}-900.webp 900w`}
-              sizes="(min-width: 768px) 33vw, 100vw"
+              sizes="(min-width: 768px) calc(33vw - 1.5rem), calc(100vw - 2.5rem)"
             />
             <img src={card.image} width="900" height="600" alt="Pic" class="size-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
           </picture>

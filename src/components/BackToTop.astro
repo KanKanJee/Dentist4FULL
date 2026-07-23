@@ -37,8 +37,6 @@
     ticking = false;
   };
 
-  updateBackToTop();
-
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(updateBackToTop);
